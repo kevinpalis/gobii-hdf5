@@ -34,6 +34,11 @@ results are stored in file "markerstest.out", and the elapsed time in
 "markerstest.log".
 
 3. N markers for M samples
+   A. Contiguous block of markers and samples
+haploblock.c takes two arguments: the number markers and the number
+of samples.  The results are stored in file "haplotest.out" and the
+elapsed.time in "haplotest.log".
+   B. Random distribution of markers and samples
 h5fetchbatch.c takes as arguments up to 60 pairs of 
 <Sample number> <Marker number> [<Sample number> <Marker number>] ...
 It is called repeatedly by the Perl script haplofetch.pl, which stores
@@ -43,4 +48,4 @@ time in haplotest.log.
 
 Note:
 For the bigger test cases it's necessary to increase the system stacksize
-to avoid running out of memory.  In bash, "ulimit stacksize unlimited".
+to avoid running out of memory.  In csh, "limit stacksize unlimited".
