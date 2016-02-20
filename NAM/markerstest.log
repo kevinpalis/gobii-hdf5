@@ -1,0 +1,40 @@
+Number of markers: 1000
+Mode: random
+Elapsed time: 1 seconds
+
+Number of markers: 3000
+Mode: random
+Elapsed time: 2 seconds
+
+Number of markers: 10000
+Mode: random
+Elapsed time: 3 seconds
+
+Number of markers: 30000
+Mode: random
+Elapsed time: 8 seconds
+
+Number of markers: 100000
+Mode: random
+Elapsed time: 26 seconds
+
+Number of markers: 1000
+Mode: contiguous
+Elapsed time: 1 seconds
+
+Number of markers: 3000
+Mode: contiguous
+Elapsed time: 1 seconds
+
+Number of markers: 10000
+Mode: contiguous
+Elapsed time: 3 seconds
+
+Number of markers: 30000
+Mode: contiguous
+Elapsed time: 7 seconds
+
+Number of markers: 100000
+Mode: contiguous
+Elapsed time: 27 seconds
+

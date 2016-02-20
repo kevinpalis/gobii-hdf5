@@ -1,0 +1,24 @@
+Number of samples: 100
+Mode: contiguous
+Elapsed time: 158 seconds
+
+Number of samples: 1000
+Mode: random
+Elapsed time: 9567 seconds
+
+Number of samples: 100
+Mode: random
+Elapsed time: 1035 seconds
+
+Number of samples: 1000
+Mode: contiguous
+Elapsed time: 434 seconds
+
+Number of samples: 3000
+Mode: contiguous
+Elapsed time: 1348 seconds
+
+Number of samples: 3000
+Mode: random
+Elapsed time: 31410 seconds
+
