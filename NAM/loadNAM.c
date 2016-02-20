@@ -34,7 +34,7 @@ int main (int argc, char *argv[]) {
   char *h5dsname;
 
   if (argc != 6) {
-    printf("Usage: %s <input vcf file> <HDF5 file> <sample count> <marker count> <dataset name>\n", argv[0]);
+    printf("Usage: %s <input csv file> <sample count> <marker count> <HDF5 file> <dataset name>\n", argv[0]);
     printf("Example: %s /shared_data/NAM_HM32/csv/c2.csv 5258 9434936 gobii.h5 /maizenam\n", argv[0]);
     return 0;
   }
