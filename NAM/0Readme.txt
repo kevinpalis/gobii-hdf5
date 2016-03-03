@@ -14,10 +14,11 @@ metadata in a relational database.
 
 loadNAM.c
 This program takes five arguments: The input csv file, the number of
-samples, the number of markers, the name of HDF5 file and the name of
+samples, the number of markers, the name of the HDF5 file and the name of
 the HDF5 dataset in that file.  The input file was
-"/shared_data/NAM_HM32/csv/c2.csv", 9.4M markers by 5K samples.  Load
-time was 24 minutes.
+"/shared_data/NAM_HM32/csv/c2.csv", 9.4M markers by 5K samples, or this
+file plus c1.csv. Load time was 24 minutes for c2 only, 55 minutes for
+both.
 
 Test Cases
 
@@ -42,9 +43,11 @@ elapsed.time in "haplotest.log".
 h5fetchbatch.c takes as arguments up to 60 pairs of 
 <Sample number> <Marker number> [<Sample number> <Marker number>] ...
 It is called repeatedly by the Perl script haplofetch.pl, which stores
-all the results in a two-dimensional N x M array in memory, then
-writes the array to the csv file "haplotest.csv" and logs the elapsed
-time in haplotest.log.
+all the results in a two-dimensional N x M array in memory, then writes
+the array to the csv file "haplotest.csv" and logs the elapsed time in
+"haplotest.log".  Times were recorded separately for the first step of
+reading into the memory array and the second step of writing out to the
+disk csv file.  The second step was less than 1% of the total.
 
 Note:
 For the bigger test cases it's necessary to increase the system stacksize

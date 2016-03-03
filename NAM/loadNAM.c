@@ -1,13 +1,13 @@
 /* loadNAM.c, DEM 4feb16, from: storeseed.c, DEM 19dec2015
    from example code h5_crtdat.c etc.  */
 
-/* Load marker allele data from /shared_data/NAM_HM32/csv/c2.csv etc.
-   into /home/matthews/gobii.h5 */
+/* Load marker allele data from /shared_data/NAM_HM32/csv/c1.csv 
+   and c2.csv into /home/matthews/gobii.h5 */
 /* Sample contents:
 chrom,pos,gdist,bp,B73(PI550473):250028951,B97(PI564682):250027958,CML103(Ames27081):250027883,CML228(Ames27088):250027960,...
 2,S2_10056,0,10056,C,C,C,C,C,T,C,N,C,T,T,...
-Dimensions: 5258 samples, 12694464 markers
-9434936 markers for c2.  Loads in 24 minutes.
+Dimensions: 5258 samples, 12488143 markers for c1, 9434936 markers for c2.  
+c2 loads in 24 minutes.  c1 + c2 loads in 55 minutes.
 */
 
 #include "hdf5.h"
@@ -28,28 +28,29 @@ int main (int argc, char *argv[]) {
   FILE *infile;
   char *row;   
   char *token;
-  int rownum, outndx;
-  char *infilename;
+  int rownum, outndx, f;
+  char infilename[2][40];
   char *h5file;
   char *h5dsname;
 
-  if (argc != 6) {
-    printf("Usage: %s <input csv file> <sample count> <marker count> <HDF5 file> <dataset name>\n", argv[0]);
-    printf("Example: %s /shared_data/NAM_HM32/csv/c2.csv 5258 9434936 gobii.h5 /maizenam\n", argv[0]);
+  if (argc != 3) {
+    printf("Usage: %s <HDF5 file> <dataset name>\n", argv[0]);
+    printf("Example: %s gobii.h5 /maizenam_c1+2\n", argv[0]);
     return 0;
   }
-  infilename = argv[1];
-  int SampleCount = atoi(argv[2]);
-  int MarkerCount = atoi(argv[3]);
-  h5file = argv[4];
-  h5dsname = argv[5];
-
+  /* Read in the command arguments */
+  h5file = argv[1];
+  h5dsname = argv[2];
+  int SampleCount = 5258;
+  int MarkerCount = 12488143 + 9434936;
+  strcpy(infilename[0], "/shared_data/NAM_HM32/csv/c1.csv");
+  strcpy(infilename[1], "/shared_data/NAM_HM32/csv/c2.csv");
   char dset_data[SampleCount];
 
   /* Create a new HDF5 file using default properties. */
   file_id = H5Fcreate(h5file, H5F_ACC_TRUNC, H5P_DEFAULT, H5P_DEFAULT);
 
-  /* Create the data space for the dataset. 5000 samples x 1M markers*/
+  /* Create the data space for the dataset. 5000 samples x 20M markers */
   dims[0] = MarkerCount; 
   dims[1] = SampleCount; 
   dataspace_id = H5Screate_simple(2, dims, NULL);
@@ -72,38 +73,40 @@ int main (int argc, char *argv[]) {
   count[0] = 1; count[1] = 1;
   blocksize[0] = 1; blocksize[1] = SampleCount; 
 
-  infile = fopen (infilename, "r");
-
   row = (char *) malloc(1000000);
-  rownum = 0;
-  while (fgets (row, 1000000, infile)) {
-    token = strtok(row, ",");
-    /* Omit the first rows, headers. */
-    if (strstr(token, "chrom") == NULL ) {
-      outndx = 1;
-      while ((token = strtok(NULL, ","))) {
-	/* Omit the four leading columns before the data (CHROM, POS, ID, etc.). */
-	if (outndx > 3) {
-	  /* Read the rest of the input line into dset_data[]. */
-	  dset_data[outndx - 4] = token[0];
+  for (f = 0; f < 2; f++) {
+    infile = fopen (infilename[f], "r");
+    rownum = 0;
+    while (fgets (row, 1000000, infile)) {
+      token = strtok(row, ",");
+      /* Omit the first row, headers. */
+      if (strstr(token, "chrom") == NULL ) {
+	outndx = 1;
+	while ((token = strtok(NULL, ","))) {
+	  /* Omit the four leading columns before the data (chrom, pos, gdist, bp). */
+	  if (outndx > 3) {
+	    /* Read the rest of the input line into dset_data[]. */
+	    dset_data[outndx - 4] = token[0];
+	  }
+	  ++outndx;
 	}
-	++outndx;
+	/* Adjust the hyperslab row. */
+	offset[0] = rownum;
+	status = H5Sselect_hyperslab(dataspace_id, H5S_SELECT_SET, offset, stride, count, blocksize);
+	/* Write to the dataset. */
+	status = H5Dwrite(dataset_id, H5T_NATIVE_CHAR, memspace_id, dataspace_id, H5P_DEFAULT, dset_data);
+	/* Echo to stdout. */
+	/* int i; */
+	/* for (i = 0; i < SampleCount; ++i) { */
+	/* 	printf("%c", dset_data[i]); */
+	/* } */
+	/* printf("\n"); */
+	++rownum;
       }
-      /* Adjust the hyperslab row. */
-      offset[0] = rownum;
-      status = H5Sselect_hyperslab(dataspace_id, H5S_SELECT_SET, offset, stride, count, blocksize);
-      /* Write to the dataset. */
-      status = H5Dwrite(dataset_id, H5T_NATIVE_CHAR, memspace_id, dataspace_id, H5P_DEFAULT, dset_data);
-      /* Echo to stdout. */
-      /* for (i = 0; i < SampleCount; ++i) { */
-      /* 	printf("%c", dset_data[i]); */
-      /* } */
-      /* printf("\n"); */
-      ++rownum;
     }
+    fclose (infile);
   }
   free (row);
-  fclose (infile);
 
   /* End access to the dataset and release resources used by it. */
   status = H5Dclose(dataset_id);

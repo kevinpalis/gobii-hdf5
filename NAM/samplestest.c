@@ -9,7 +9,7 @@
 #include <time.h>
 
 #define H5FILE      "/home/matthews/HDF5testing/NAM/gobii.h5"
-#define DATASETNAME "/maizenam" 
+#define DATASETNAME "/maizenam_c1+2" 
 #define RANK  2                           /* number of dimensions */
 
 int main (int argc, char *argv[]) {
@@ -30,9 +30,8 @@ int main (int argc, char *argv[]) {
 
   if (argc < 3) {
     printf("Usage: %s <number of samples> <contiguous|random> <total markers in dataset>\n", argv[0]);
-    printf("E.g. %s 1000 random 9434936\n", argv[0]);
+    printf("E.g. %s 1000 random 21923079\n", argv[0]);
     printf("Fetch alleles for all markers for the specified number of samples\n");
-    printf("%s", "Sample numbering starts at 1, not 0.\n");
     printf("Output is in samplestest.out and samplestest.log.\n");
     return 0;
   }

@@ -6,7 +6,7 @@
 #include <stdlib.h>
 
 #define FILE        "/home/matthews/HDF5testing/NAM/gobii.h5"
-#define DATASETNAME "/maizenam" 
+#define DATASETNAME "/maizenam_c1+2" 
 #define RANK  2
 
 #define DIM0_SUB  60                      /* subset dimensions */ 

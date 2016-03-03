@@ -9,7 +9,7 @@
 #include <time.h>
 
 #define H5FILE      "/home/matthews/HDF5testing/NAM/gobii.h5"
-#define DATASETNAME "/maizenam" 
+#define DATASETNAME "/maizenam_c1+2" 
 #define RANK  2                           /* number of dimensions */
 
 int main (int argc, char *argv[]) {
