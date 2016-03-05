@@ -36,18 +36,13 @@ of samples in the HDF5 dataset.  The results are stored in file
 
 3. N markers for M samples
    A. Contiguous block of markers and samples
-haploblock.c takes two arguments: the number markers and the number
+haploblock.c takes two arguments: the number of markers and the number
 of samples.  The results are stored in file "haplotest.out" and the
 elapsed.time in "haplotest.log".
    B. Random distribution of markers and samples
-h5fetchbatch.c takes as arguments up to 60 pairs of 
-<Sample number> <Marker number> [<Sample number> <Marker number>] ...
-It is called repeatedly by the Perl script haplofetch.pl, which stores
-all the results in a two-dimensional N x M array in memory, then writes
-the array to the csv file "haplotest.csv" and logs the elapsed time in
-"haplotest.log".  Times were recorded separately for the first step of
-reading into the memory array and the second step of writing out to the
-disk csv file.  The second step was less than 1% of the total.
+haplarray.c takes two arguments:  the number of markers and the number
+of samples.  The results are stored in file "haplarray.csv" and the
+elapsed.time in "haplarray.log". 
 
 Note:
 For the bigger test cases it's necessary to increase the system stacksize
