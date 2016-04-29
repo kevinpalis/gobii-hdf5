@@ -27,7 +27,7 @@ of samples in the HDF5 dataset.  The results are stored in file
 
 3. Arbitrary sample/marker pairs  
 `bin/h5fetchbatch` takes as arguments up to 60 pairs of  
-\<Sample number\> \<Marker number\> [\<Sample number\> \<Marker number\>] ...
+\<Sample number\> \<Marker number\> [\<Sample number\> \<Marker number\>] ...  
 The results are printed to stdout as a blank-delimited string.
 
 Note:  
