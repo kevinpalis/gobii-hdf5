@@ -33,6 +33,6 @@ of samples, both assumed non-contiguous.  The results are stored in file
 \<Sample number\> \<Marker number\> [\<Sample number\> \<Marker number\>] ...  
 The results are printed to stdout as a blank-delimited string.
 
-**Note*:  
+**Note:**  
 For the bigger test cases it's necessary to increase the system stacksize
 to avoid running out of memory.  In csh, "limit stacksize unlimited".
