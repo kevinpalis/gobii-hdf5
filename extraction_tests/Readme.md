@@ -26,13 +26,13 @@ of samples in the HDF5 dataset.  The results are stored in file
 "markerstest.out", and the elapsed time in "markerstest.log".
 
 3. Arbitrary sample/marker pairs
-  *`bin/haplarray` takes two arguments: the number of markers and the number
+  * `bin/haplarray` takes two arguments: the number of markers and the number
 of samples, both assumed non-contiguous.  The results are stored in file
 "haplarray.csv", and the elapsed time in "haplarray.log".
-  *`bin/h5fetchbatch` takes as arguments up to 60 pairs of  
+  * `bin/h5fetchbatch` takes as arguments up to 60 pairs of  
 \<Sample number\> \<Marker number\> [\<Sample number\> \<Marker number\>] ...  
 The results are printed to stdout as a blank-delimited string.
 
-Note:  
+**Note*:  
 For the bigger test cases it's necessary to increase the system stacksize
 to avoid running out of memory.  In csh, "limit stacksize unlimited".
