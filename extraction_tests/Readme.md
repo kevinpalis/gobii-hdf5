@@ -25,7 +25,7 @@ are distributed randomly or as a contiguous block, and the total number
 of samples in the HDF5 dataset.  The results are stored in file
 "markerstest.out", and the elapsed time in "markerstest.log".
 
-3. Arbitrary sample/marker pairs  
+3. Arbitrary sample/marker pairs
   *`bin/haplarray` takes two arguments: the number of markers and the number
 of samples, both assumed non-contiguous.  The results are stored in file
 "haplarray.csv", and the elapsed time in "haplarray.log".
