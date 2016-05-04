@@ -3,8 +3,8 @@
 
 /* Load one dataset in Intermediate File format into the specified HDF5 file. 
    Tab-separated IUPAC codes, no header row or column.
+   Load both normal orientation (sites-fast) and transposed (taxa-fast).
 */
-
 
 #include "hdf5.h"
 #include <stdio.h>
@@ -25,7 +25,6 @@ int main(int argc, char *argv[]) {
   char *token;
   int rownum, outndx;
   char *row;
-  row = malloc(1000000);
 
   if (argc < 3) {
     printf("Usage: %s <input file> <output HDF5 file>\n", argv[0]);
@@ -44,50 +43,57 @@ int main(int argc, char *argv[]) {
 
   /* Read the first line of the input file to get the number of samples. */
   infile = fopen (infilename, "r");
-  fgets (row, 1000000, infile);
+  row = malloc(100000);
+  row = fgets (row, 100000, infile);
   outndx = 0;
-  token = strtok(row, "\t");  
-  while ((token = strtok(NULL, "\t\n\r"))) 
+  token = strtok(row, "\t");
+  while ((token = strtok(NULL, "\t")))
     outndx++;
-  int SampleCount = outndx;
+  int SampleCount = outndx + 1;
   fclose(infile);
-  printf("Samples: %i\n", SampleCount+1);
-
+  printf("Samples: %i\n", SampleCount);
+  free(row);
 
   /* Read the whole file through to get the number of markers.  (wc -l? )*/
   infile = fopen(infilename, "r");
+  row = malloc(100000);
   int markernum = 0;
-  while (fgets (row, 1000000, infile)) 
+  while (fgets (row, 100000, infile) != NULL)
     markernum++;
-  int MarkerCount = markernum;
+  int MarkerCount = markernum + 1;
   fclose(infile);
-  printf("Markers: %i\n", MarkerCount+1);
+  printf("Markers: %i\n", MarkerCount);
+  free(row);
 
+  /*************************************/
+  /* First dataset, normal orientation */
 
   /* Create the data space for the dataset. */
   dims[0] = MarkerCount;
-  dims[1] = SampleCount; 
+  dims[1] = SampleCount;
   dataspace_id = H5Screate_simple(2, dims, NULL);
 
   /* Create the dataset. Each element is type CHAR. */
-  dataset_id = H5Dcreate2(file_id, h5dataset, H5T_NATIVE_CHAR, dataspace_id, 
+  dataset_id = H5Dcreate2(file_id, h5dataset, H5T_NATIVE_CHAR, dataspace_id,
                           H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
 
   /* Create a memory buffer space. */
-  dimsmem[0] = 1; 
+  dimsmem[0] = 1;
   dimsmem[1] = SampleCount;
   memspace_id = H5Screate_simple(2, dimsmem, NULL);
 
   /* Create the hyperslab dimensions */
   offset[0] = 0; offset[1] = 0;
-  stride[0] = 1; stride[1] = 1; 
+  stride[0] = 1; stride[1] = 1;
   count[0] = 1; count[1] = 1;
-  blocksize[0] = 1; blocksize[1] = SampleCount; 
+  blocksize[0] = 1; blocksize[1] = SampleCount;
 
-  char dset_data[100000];
+  /* char dset_data[100000]; */
+  char *dset_data = malloc(100000);
   rownum = 0;
   infile = fopen(infilename, "r");
-  while (fgets (row, 1000000, infile)) {
+  row = malloc(100000);
+  while (fgets (row, 100000, infile)) {
     token = strtok(row, "\t");
     outndx = 0;
     dset_data[outndx] = token[0];
@@ -111,14 +117,106 @@ int main(int argc, char *argv[]) {
     /* printf("\n"); */
   }
   fclose(infile);
-  free(row);
+  free(dset_data);
 
   /* End access to the dataset and release resources used by it. */
   status = H5Dclose(dataset_id);
 
-  /* End access to the data space. */ 
+  /* End access to the data spaces. */
   status = H5Sclose(dataspace_id);
+  status = H5Sclose(memspace_id);
 
+
+  /******************************************/
+  /* Second dataset, transposed orientation */
+
+  /* Create the data space for the dataset. */
+  dims[0] = SampleCount; 
+  dims[1] = MarkerCount;
+  dataspace_id = H5Screate_simple(2, dims, NULL);
+
+  h5dataset ="allelematrix_samples-fast";
+  /* Create the dataset. Each element is type CHAR. */
+  dataset_id = H5Dcreate2(file_id, h5dataset, H5T_NATIVE_CHAR, dataspace_id, 
+                          H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
+
+  /* Load in 10,000-marker batches. */
+  int batchsize = 10000;
+
+  /* Create a memory buffer space. */
+  dimsmem[0] = SampleCount;
+  dimsmem[1] = batchsize; 
+  memspace_id = H5Screate_simple(2, dimsmem, NULL);
+
+  /* Create the initial hyperslab dimensions */
+  offset[0] = 0; offset[1] = 0;
+  stride[0] = 1; stride[1] = 1; 
+  count[0] = 1; count[1] = 1;
+  blocksize[0] = SampleCount; blocksize[1] = batchsize; 
+
+  /* Declare the 2D array for reading the input file into. */
+  /* char **batch_data = malloc((SampleCount+1) * sizeof(char *)); */
+  /* int k; */
+  /* for (k = 0; k < SampleCount+1; k++) */
+  /*   batch_data[k] = malloc(batchsize); */
+  char batch_data[SampleCount][batchsize];
+
+  char *row2 = (char *) malloc(100000);
+  FILE *infile2 = fopen (infilename, "r");
+  if (infile2 == NULL)
+    return errno;
+  rownum = 0;
+  int batchcounter = 0;
+  /* Read in the input file. */
+  while (fgets (row2, 100000, infile2)) {
+    token = strtok(row2, "\t");
+    outndx = 0;
+    batch_data[outndx][batchcounter] = token[0];
+    while ((token = strtok(NULL, "\t"))) {
+      /* Read the rest of the input line into batch_data[]. */
+      ++outndx;
+      batch_data[outndx][batchcounter] = token[0];
+    }
+    if (batchcounter == batchsize - 1) {
+      /* Adjust the hyperslab column. */
+      offset[1] = rownum - (batchsize-1);
+      status = H5Sselect_hyperslab(dataspace_id, H5S_SELECT_SET, offset, stride, count, blocksize);
+      /* Write to the dataset. */
+      status = H5Dwrite(dataset_id, H5T_NATIVE_CHAR, memspace_id, dataspace_id, H5P_DEFAULT, batch_data);
+
+      printf("H5Dwrite status = %i\n", status);
+      /* For debugging. Echo this data row to stdout. */
+      int i;
+      for (i = 0; i < SampleCount; ++i)
+      	printf("%c", batch_data[i][batchcounter]);
+      printf("\n");
+
+      batchcounter = 0;
+    }
+    rownum++;
+    batchcounter++;
+  }
+  /* At end of file. Now write out the remaining fraction of a batch. */
+  dimsmem[1] = batchcounter;
+  hid_t rmemspace_id;
+  rmemspace_id = H5Screate_simple(2, dimsmem, NULL);
+  offset[1] = rownum - batchcounter;
+  blocksize[1] = batchcounter;
+  status = H5Sselect_hyperslab(dataspace_id, H5S_SELECT_SET, offset, stride, count, blocksize);
+  status = H5Dwrite(dataset_id, H5T_NATIVE_CHAR, rmemspace_id, dataspace_id, H5P_DEFAULT, batch_data);
+
+  /* for (k = 0; k < SampleCount+1; k++) */
+  /*   free (batch_data[k]); */
+  /* free(batch_data); */
+  free(row2);
+  fclose (infile2);
+
+  /* End access to the dataset and release resources used by it. */
+  status = H5Dclose(dataset_id);
+  /* End access to the data spaces. */ 
+  status = H5Sclose(memspace_id);
+  status = H5Sclose(rmemspace_id);
+  status = H5Sclose(dataspace_id);
   /* Close the file. */
   status = H5Fclose(file_id);
 
