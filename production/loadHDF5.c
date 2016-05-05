@@ -184,12 +184,12 @@ int main(int argc, char *argv[]) {
       /* Write to the dataset. */
       status = H5Dwrite(dataset_id, H5T_NATIVE_CHAR, memspace_id, dataspace_id, H5P_DEFAULT, batch_data);
 
-      printf("H5Dwrite status = %i\n", status);
-      /* For debugging. Echo this data row to stdout. */
-      int i;
-      for (i = 0; i < SampleCount; ++i)
-      	printf("%c", batch_data[i][batchcounter]);
-      printf("\n");
+      /* printf("H5Dwrite status = %i\n", status); */
+      /* /\* For debugging. Echo this data row to stdout. *\/ */
+      /* int i; */
+      /* for (i = 0; i < SampleCount; ++i) */
+      /* 	printf("%c", batch_data[i][batchcounter]); */
+      /* printf("\n"); */
 
       batchcounter = 0;
     }
