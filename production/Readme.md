@@ -9,3 +9,24 @@ stored in two HDF5 *datasets* in the file, named "allelematrix"
 (original orientation) and "allelematrix_samples-fast" (transposed).
 
 The HDF5 file can be viewed and browsed with `h5dump()`.
+
+# Using the "fetch" programs
+
+`bin/fetchsample` takes three arguments: the name of the source HDF5
+file, the index position of the desired sample, and the name of the
+output file.  Output is a one-line file with the alleles of all markers
+for that sample, tab-delimited.
+
+`bin/fetchmarker` takes three arguments: the name of the source HDF5
+file, the index position of the desired marker, and the name of the
+output file.  Output is a one-line file with the alleles of all samples
+for that marker, tab-delimited.
+
+`bin/fetchpoints` takes at least four arguments: the name of the source
+HDF5 file, the name of the output file, and at least one pair of (index
+position of sample, index position of marker), all punctuated only by
+blanks.  Up to sixty sample/marker pairs can be requested, which is
+faster than running the program sixty times.
+
+All programs output a Usage message and a working example if they are
+invoked with no arguments.
