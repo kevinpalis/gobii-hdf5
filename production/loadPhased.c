@@ -151,7 +151,7 @@ int main(int argc, char *argv[]) {
 
   /* Create the data space for the dataset. */
   dims[0] = SampleCount; 
-  dims[1] = MarkerCount * datumsize;
+  dims[1] = MarkerCount;
   dataspace_id = H5Screate_simple(2, dims, NULL);
 
   h5dataset ="allelematrix_samples-fast";
@@ -165,14 +165,14 @@ int main(int argc, char *argv[]) {
   /* Create a memory buffer space. */
   /* dimsmem[0] = SampleCount; */
   dimsmem[0] = 1;
-  dimsmem[1] = batchsize * datumsize;
+  dimsmem[1] = batchsize;
   memspace_id = H5Screate_simple(2, dimsmem, NULL);
 
   /* Create the initial hyperslab dimensions */
   offset[0] = 0; offset[1] = 0;
   stride[0] = 1; stride[1] = 1; 
   count[0] = 1; count[1] = 1;
-  blocksize[0] = 1; blocksize[1] = batchsize * datumsize; 
+  blocksize[0] = 1; blocksize[1] = batchsize;
 
   /* Declare the 2D array for reading the input file into. */
   /* char **batch_data = malloc((SampleCount+1) * sizeof(char *)); */
@@ -221,10 +221,10 @@ int main(int argc, char *argv[]) {
     batchcounter++;
   }
   /* At end of file. Now write out the remaining fraction of a batch. */
-  dimsmem[1] = batchcounter * datumsize;
+  dimsmem[1] = batchcounter;
   rmemspace_id = H5Screate_simple(2, dimsmem, NULL);
   offset[1] = (rownum - batchcounter) * datumsize;
-  blocksize[1] = batchcounter * datumsize;
+  blocksize[1] = batchcounter;
   for (i = 0; i < SampleCount; i++) {
     for (j = 0; j < batchcounter; j++)
       for (k = 0; k < datumsize; k++)
