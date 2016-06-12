@@ -8,7 +8,17 @@ Format file, and the name of the destination HDF5 file.  The data are
 stored in two HDF5 *datasets* in the file, named "allelematrix"
 (original orientation) and "allelematrix_samples-fast" (transposed).
 
-The HDF5 file can be viewed and browsed with `h5dump()`.
+`bin/loadPhased` is similar except that it handles 2-character SNP calls
+like "GG" as well as 1-character IUPAC codes.  So it takes another 
+argument (first), the datatype, either "Phased" or "IUPAC".
+
+The HDF5 file can be browsed with `h5dump()`.
+
+# Dumping a dataset
+
+`bin/dumpdataset` outputs the specified HDF5 file to the specified output
+file as a tab-delimited line for each sample.  The first argument is
+the datatype, either "Phased" or "IUPAC".
 
 # Using the "fetch" programs
 

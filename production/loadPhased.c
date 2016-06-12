@@ -73,7 +73,7 @@ int main(int argc, char *argv[]) {
   int markernum = 0;
   while (fgets (row, 100000, infile) != NULL)
     markernum++;
-  int MarkerCount = markernum + 1;
+  int MarkerCount = markernum;
   fclose(infile);
   printf("Markers: %i\n", MarkerCount);
   free(row);
