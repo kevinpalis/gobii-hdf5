@@ -1,6 +1,5 @@
-/* fetchsamplelist.c, 8jun2016, from fetchsample.c, 7may106, from: samplestest.c, 26jan2015, from h5fetchsample.c, 25jan2015
-   Fetch a set of entire rows, alleles for all markers for the specified samples. */
-/* 12jun16, Detect and handle different datatypes. */
+/* dumpdataset.c, 9jun16, from fetchsample.c, 7may106, from: samplestest.c, 26jan2015
+   Fetch an entire dataset, alleles for all markers for all samples, samples-fast orientation. */
 
 #include "hdf5.h"
 #include <stdio.h>
@@ -25,21 +24,25 @@ int main (int argc, char *argv[]) {
   FILE *outfile;
   int datumsize, i, j, k;
 
-  if (argc < 3) {
-    printf("Usage: %s <HDF5 file> <output file> <sample number> [<sample number] ...\n", argv[0]);
-    printf("E.g. %s /shared_data/HDF5/Maize/SeeD_unimputed.h5 /tmp/fetchsamples.out 0 679 4844\n", argv[0]);
-    printf("E.g. %s /shared_data/HDF5/Rice/PhasedSNPs.h5 /tmp/fetchsamples.out 0 63 567\n", argv[0]);
-    printf("Fetch alleles for up to 100 specified samples, for all markers.\n");
+  if (argc < 4) {
+    printf("Usage: %s <datatype> <HDF5 file> <output file>\n", argv[0]);
+    printf("E.g. %s Phased /shared_data/HDF5/Rice/PhasedSNPs.h5 /tmp/dumpdataset.out\n", argv[0]);
+    printf("E.g. %s IUPAC /shared_data/HDF5/Maize/SeeD_unimputed.h5 /tmp/dumpdataset.out\n", argv[0]);
+    printf("Fetch alleles for all markers, all samples.\n");
+    printf("Allowed datatypes: Phased, IUPAC\n");
     return 0;
   }
   /* Read the arguments. */
-  char *h5filename = argv[1];
-  char *outfilename = argv[2];
-  outfile = fopen (outfilename, "w");
-  int samplecount = argc - 3;
-  int samples[samplecount];
-  for (i = 3; i < argc; i++) 
-    samples[i - 3] = atoi(argv[i]);
+  if (strcmp(argv[1], "Phased") == 0) {
+    datumtype = H5Tcreate(H5T_STRING, 2);
+    datumsize = 2;
+  }
+  else {
+    datumtype = H5T_NATIVE_CHAR;
+    datumsize = 1;
+  }
+  char *h5filename = argv[2];
+  char *outfilename = argv[3];
 
   /* Open the HDF5 file and dataset. */
   file_id = H5Fopen (h5filename, H5F_ACC_RDONLY, H5P_DEFAULT);
@@ -51,46 +54,35 @@ int main (int argc, char *argv[]) {
   int SampleTotal = filedims[0];
   int MarkerTotal = filedims[1];
 
-  /* Determine the datatype and the size of an individual element. */
-  datumtype = H5Dget_type(dataset_id);
-  datumsize = H5Tget_size(datumtype);
-  /* printf("datumsize = %i\n", datumsize); */
-  /* return 0; */
-
-  /* Create memory space with size of subset. Get file dataspace. */
+  /* Create memory space with size of the dataset. Get file dataspace. */
   dimsm[0] = 1;
   dimsm[1] = MarkerTotal; 
-  char rdata[MarkerTotal * datumsize];  /* buffer for read */
   memspace_id = H5Screate_simple (RANK, dimsm, NULL); 
+  char rdata[MarkerTotal * datumsize];  /* buffer for read */
   /* Select subset from file dataspace. */
   start[1] = 0;
   stride[0] = 1; stride[1] = 1;
   count[0] = 1; count[1] = 1;
   block[0] = 1; block[1] = MarkerTotal;
-  /* Open the output file. */
-
-  for (i = 0; i < samplecount; i++) {
-    if (samples[i] >= SampleTotal) {
-      printf("Sample number %i out of range.\n", samples[i]);
-      return 1;
-    }
-    start[0] = samples[i];
+  
+  outfile = fopen (outfilename, "w");
+  for (j = 0; j < SampleTotal; j++) {
+    start[0] = j;
     status = H5Sselect_hyperslab(dataspace_id, H5S_SELECT_SET, start, stride, count, block);
     /* Read the hyperslab. */
     status = H5Dread (dataset_id, datumtype, memspace_id, dataspace_id, H5P_DEFAULT, rdata);
     /* Write the results to the output file, as a tab-delimited string for each sample. */
-    for (j = 0; j < MarkerTotal * datumsize; j = j + datumsize) {
+    for (i = 0; i < MarkerTotal * datumsize; i = i + datumsize) {
       for (k = 0; k < datumsize; k++) 
-	fprintf(outfile, "%c", rdata[j + k]);
+	fprintf(outfile, "%c", rdata[i + k]);
       /* No trailing <Tab> at end of line. */
-      if (j < (MarkerTotal - 1) * datumsize)
+      if (i < (MarkerTotal - 1) * datumsize)
 	fprintf(outfile, "\t");
     }
     fprintf(outfile, "\n");
   }
   fclose(outfile);
 
-  status = H5Tclose(datumtype);
   status = H5Sclose (memspace_id);
   status = H5Sclose (dataspace_id);
   status = H5Dclose (dataset_id);
