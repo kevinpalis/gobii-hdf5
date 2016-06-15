@@ -40,3 +40,7 @@ faster than running the program sixty times.
 
 All programs output a Usage message and a working example if they are
 invoked with no arguments.
+
+# Compiling the C programs
+
+Use "h5cc -O".  (That's an oh, not a zero.)
