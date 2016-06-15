@@ -1,5 +1,6 @@
 /* dumpdataset.c, 9jun16, from fetchsample.c, 7may106, from: samplestest.c, 26jan2015
-   Fetch an entire dataset, alleles for all markers for all samples, samples-fast orientation. */
+   Fetch an entire dataset, alleles for all markers for all samples, in standard sites-fast orientation. */
+/* 14jun16: Read the datatype from the file, instead of requiring a command-line argument. */
 
 #include "hdf5.h"
 #include <stdio.h>
@@ -8,7 +9,8 @@
 #include <errno.h>
 #include <time.h>
 
-#define DATASETNAME "/allelematrix_samples-fast" 
+/* #define DATASETNAME "/allelematrix_samples-fast"  */
+#define DATASETNAME "/allelematrix" 
 #define RANK  2                           /* number of dimensions */
 
 int main (int argc, char *argv[]) {
@@ -24,25 +26,16 @@ int main (int argc, char *argv[]) {
   FILE *outfile;
   int datumsize, i, j, k;
 
-  if (argc < 4) {
+  if (argc < 3) {
     printf("Usage: %s <datatype> <HDF5 file> <output file>\n", argv[0]);
-    printf("E.g. %s Phased /shared_data/HDF5/Rice/PhasedSNPs.h5 /tmp/dumpdataset.out\n", argv[0]);
-    printf("E.g. %s IUPAC /shared_data/HDF5/Maize/SeeD_unimputed.h5 /tmp/dumpdataset.out\n", argv[0]);
+    printf("E.g. %s /shared_data/HDF5/Rice/PhasedSNPs.h5 /tmp/dumpdataset.out\n", argv[0]);
+    printf("E.g. %s /shared_data/HDF5/Maize/SeeD_unimputed.h5 /tmp/dumpdataset.out\n", argv[0]);
     printf("Fetch alleles for all markers, all samples.\n");
-    printf("Allowed datatypes: Phased, IUPAC\n");
     return 0;
   }
   /* Read the arguments. */
-  if (strcmp(argv[1], "Phased") == 0) {
-    datumtype = H5Tcreate(H5T_STRING, 2);
-    datumsize = 2;
-  }
-  else {
-    datumtype = H5T_NATIVE_CHAR;
-    datumsize = 1;
-  }
-  char *h5filename = argv[2];
-  char *outfilename = argv[3];
+  char *h5filename = argv[1];
+  char *outfilename = argv[2];
 
   /* Open the HDF5 file and dataset. */
   file_id = H5Fopen (h5filename, H5F_ACC_RDONLY, H5P_DEFAULT);
@@ -54,7 +47,11 @@ int main (int argc, char *argv[]) {
   int SampleTotal = filedims[0];
   int MarkerTotal = filedims[1];
 
-  /* Create memory space with size of the dataset. Get file dataspace. */
+  /* Determine the datatype and the size of an individual element. */
+  datumtype = H5Dget_type(dataset_id);
+  datumsize = H5Tget_size(datumtype);
+
+  /* Create memory space with size of the dataset. */
   dimsm[0] = 1;
   dimsm[1] = MarkerTotal; 
   memspace_id = H5Screate_simple (RANK, dimsm, NULL); 
@@ -83,6 +80,7 @@ int main (int argc, char *argv[]) {
   }
   fclose(outfile);
 
+  status = H5Tclose (datumtype);
   status = H5Sclose (memspace_id);
   status = H5Sclose (dataspace_id);
   status = H5Dclose (dataset_id);
