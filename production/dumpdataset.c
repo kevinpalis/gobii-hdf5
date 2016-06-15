@@ -9,8 +9,6 @@
 #include <errno.h>
 #include <time.h>
 
-/* #define DATASETNAME "/allelematrix_samples-fast"  */
-#define DATASETNAME "/allelematrix" 
 #define RANK  2                           /* number of dimensions */
 
 int main (int argc, char *argv[]) {
@@ -24,22 +22,28 @@ int main (int argc, char *argv[]) {
   herr_t      status;                   
 
   FILE *outfile;
+  char *h5dataset;
   int datumsize, i, j, k;
 
-  if (argc < 3) {
-    printf("Usage: %s <datatype> <HDF5 file> <output file>\n", argv[0]);
-    printf("E.g. %s /shared_data/HDF5/Rice/PhasedSNPs.h5 /tmp/dumpdataset.out\n", argv[0]);
-    printf("E.g. %s /shared_data/HDF5/Maize/SeeD_unimputed.h5 /tmp/dumpdataset.out\n", argv[0]);
+  if (argc < 4) {
+    printf("Usage: %s <orientation> <HDF5 file> <output file>\n", argv[0]);
+    printf("E.g. %s samples-fast /shared_data/HDF5/Rice/PhasedSNPs.h5 /tmp/dumpdataset.out\n", argv[0]);
+    printf("E.g. %s markers-fast /shared_data/HDF5/Maize/SeeD_unimputed.h5 /tmp/dumpdataset.out\n", argv[0]);
     printf("Fetch alleles for all markers, all samples.\n");
+    printf("<orientation> is either 'samples-fast' or 'markers-fast'.\n");
     return 0;
   }
   /* Read the arguments. */
-  char *h5filename = argv[1];
-  char *outfilename = argv[2];
+  if (strcmp(argv[1], "samples-fast") == 0)
+    h5dataset = "/allelematrix_samples-fast";
+  else
+    h5dataset = "/allelematrix";
+  char *h5filename = argv[2];
+  char *outfilename = argv[3];
 
   /* Open the HDF5 file and dataset. */
   file_id = H5Fopen (h5filename, H5F_ACC_RDONLY, H5P_DEFAULT);
-  dataset_id = H5Dopen2 (file_id, DATASETNAME, H5P_DEFAULT);
+  dataset_id = H5Dopen2 (file_id, h5dataset, H5P_DEFAULT);
   dataspace_id = H5Dget_space (dataset_id);
 
   /* Find the dimensions of the HDF5 file dataset. */
