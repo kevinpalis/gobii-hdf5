@@ -12,9 +12,10 @@ The HDF5 file can be browsed with `h5dump()`.
 
 # Dumping a dataset
 
-`bin/dumpdataset` outputs the specified HDF5 file to the specified output
-file as a tab-delimited line for each sample.  The first argument is
-the datatype, either "Phased" or "IUPAC".
+`bin/dumpdataset` outputs the specified HDF5 file to the specified
+output file as a tab-delimited line for each sample.  The first argument
+is the orientation desired for the output, "samples-fast" or
+"markers-fast".
 
 # Using the "fetch" programs
 
@@ -36,3 +37,7 @@ faster than running the program sixty times.
 
 All programs output a Usage message and a working example if they are
 invoked with no arguments.
+
+# Compiling the C programs
+
+Use "h5cc -O".  (That's an oh, not a zero.)
