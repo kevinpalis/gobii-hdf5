@@ -1,16 +1,12 @@
 # Using loadHDF5
 
 To use `bin/loadHDF5`, you must first set the system stacksize to unlimited.
-In csh, "limit stacksize unlimited".
+In csh, "limit stacksize unlimited". In bash, "ulimit -s unlimited".
 
-The application takes two arguments: the name of the input Intermediate
-Format file, and the name of the destination HDF5 file.  The data are
+The application takes three arguments: the datasize for each allele/datacell in the input, the name of the input Intermediate
+Format file, and the name of the destination HDF5 file. The valid values for datasize are between 1-10. The data is
 stored in two HDF5 *datasets* in the file, named "allelematrix"
 (original orientation) and "allelematrix_samples-fast" (transposed).
-
-`bin/loadPhased` is similar except that it handles 2-character SNP calls
-like "GG" as well as 1-character IUPAC codes.  So it takes another 
-argument (first), the datatype, either "Phased" or "IUPAC".
 
 The HDF5 file can be browsed with `h5dump()`.
 
