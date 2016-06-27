@@ -44,7 +44,7 @@ int main(int argc, char *argv[]) {
   } else {
     printf("Invalid <datasize>.\n");	
     printf("Must be a numeric value between 1 and 10.\n");
-    return 0;
+    return 1;
   } 
   char *infilename = argv[2];
   char *h5file = argv[3];
@@ -224,13 +224,22 @@ int main(int argc, char *argv[]) {
 
   /* End access to the dataset and release resources used by it. */
   status = H5Dclose(dataset_id);
+  if (status < 0)
+    return 2;
   /* End access to the data spaces. */ 
   status = H5Sclose(memspace_id);
+  if (status < 0)
+    return 3;
   status = H5Sclose(rmemspace_id);
+  if (status < 0)
+    return 4;
   status = H5Sclose(dataspace_id);
+  if (status < 0)
+    return 5;
   /* Close the file. */
   status = H5Fclose(file_id);
+  if (status < 0)
+    return 6;
 
-  if (status) return 0;
-  else return 1;
+  return 0;
 }
