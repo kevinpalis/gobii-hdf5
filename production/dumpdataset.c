@@ -43,6 +43,10 @@ int main (int argc, char *argv[]) {
 
   /* Open the HDF5 file and dataset. */
   file_id = H5Fopen (h5filename, H5F_ACC_RDONLY, H5P_DEFAULT);
+  if (file_id < 0) {
+    printf("Failure opening input file %s\n", h5filename);
+    return 1;
+  }
   dataset_id = H5Dopen2 (file_id, h5dataset, H5P_DEFAULT);
   dataspace_id = H5Dget_space (dataset_id);
 
