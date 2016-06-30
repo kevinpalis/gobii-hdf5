@@ -7,8 +7,7 @@ The application takes three arguments: the datasize for each
 allele/datacell in the input, the name of the input Intermediate Format
 file, and the name of the destination HDF5 file. The valid values for
 datasize are between 1-10.  The input file should contain nothing but
-a tab-delimited matrix of allele calls, except that there must be one
-header line at the top (contents ignored).  Each sample should be a
+a tab-delimited matrix of allele calls.  Each sample should be a
 column and each marker should be a row.
 
 The data is stored in two HDF5 *datasets* in the output HDF5 file, named
