@@ -5,7 +5,6 @@
    Load both normal orientation (sites-fast) and transposed (taxa-fast).
    No header row or column, values Tab-separated.
    HDF5 datasize is passed as command line argument.    
-   28jun16: Now we assume there is one header row, which we ignore.
 */
 
 #include "hdf5.h"
@@ -56,10 +55,9 @@ int main(int argc, char *argv[]) {
   /* Open the file.  */
   file_id = H5Fopen(h5file, H5F_ACC_RDWR, H5P_DEFAULT);
 
-  /* Read the second line of the input file to get the number of samples. */
+  /* Read the first line of the input file to get the number of samples. */
   infile = fopen (infilename, "r");
   row = malloc(100000);
-  row = fgets (row, 100000, infile);
   row = fgets (row, 100000, infile);
   outndx = 0;
   token = strtok(row, "\t");
@@ -73,7 +71,6 @@ int main(int argc, char *argv[]) {
   /* Read the whole file through to get the number of markers.  (wc -l?) */
   infile = fopen(infilename, "r");
   row = malloc(100000);
-  row = fgets (row, 100000, infile);  /* header row */
   int markernum = 0;
   while (fgets (row, 100000, infile) != NULL)
     markernum++;
@@ -110,7 +107,6 @@ int main(int argc, char *argv[]) {
   rownum = 0;
   infile = fopen(infilename, "r");
   row = malloc(100000);
-  row = fgets (row, 100000, infile);  /* header row */
   while (fgets (row, 100000, infile)) {
     token = strtok(row, "\t");
     outndx = 0;
@@ -182,7 +178,6 @@ int main(int argc, char *argv[]) {
   rownum = 0;
   int batchcounter = 0;
   /* Read in the input file. */
-  row2 = fgets (row2, 100000, infile2);  /* header row */
   while (fgets (row2, 100000, infile2)) {
     token = strtok(row2, "\t");
     outndx = 0;
