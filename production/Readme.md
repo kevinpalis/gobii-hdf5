@@ -1,8 +1,5 @@
 # Using loadHDF5
 
-To use `bin/loadHDF5`, you must first set the system stacksize to unlimited.
-In csh, "limit stacksize unlimited". In bash, "ulimit -s unlimited".
-
 The application takes three arguments: the datasize for each
 allele/datacell in the input, the name of the input Intermediate Format
 file, and the name of the destination HDF5 file. The valid values for

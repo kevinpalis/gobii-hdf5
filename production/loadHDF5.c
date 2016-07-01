@@ -1,4 +1,4 @@
-/* loadIFF.c, jun  15,16, from: loadPhased.c, DEM 1may16, from: loadSEED.c, DEM 6apr2016, ...
+/* loadHDF5.c, 1jul2016, from loadIFF.c, jun 15,16, from: loadPhased.c, DEM 1may16, from: loadSEED.c, DEM 6apr2016, ...
    from example code h5_crtdat.c etc.  */
 
 /* Load one dataset in Intermediate File format into the specified HDF5 file. 
@@ -170,14 +170,17 @@ int main(int argc, char *argv[]) {
   blocksize[0] = 1; blocksize[1] = batchsize;
 
   /* Declare the 2D array for reading the input file into. */
-  char batch_data[SampleCount * datumsize][batchsize];
+  char **batch_data = malloc(SampleCount * datumsize * sizeof(char *));
+  for (i = 0; i < SampleCount * datumsize; i++)
+    batch_data[i] = malloc(batchsize);
+  /* Declare a row of the transposed array. */
   char sampledata[batchsize * datumsize];
 
+  /* Read in the input file. */
   char *row2 = malloc(100000);
   FILE *infile2 = fopen (infilename, "r");
   rownum = 0;
   int batchcounter = 0;
-  /* Read in the input file. */
   while (fgets (row2, 100000, infile2)) {
     token = strtok(row2, "\t");
     outndx = 0;
@@ -192,6 +195,7 @@ int main(int argc, char *argv[]) {
     if (batchcounter == batchsize - 1) {
       /* Adjust the hyperslab column. */
       offset[1] = (rownum - batchcounter) * datumsize;
+      /* Transpose the array, one sample at a time, and write to the HDF5 file. */
       for (i = 0; i < SampleCount; i++) {
 	for (j = 0; j < batchcounter; j++)
 	  for (k = 0; k < datumsize; k++)
