@@ -1,5 +1,6 @@
 /* fetchsample.c, 7may106, from: samplestest.c, 26jan2015, from h5fetchsample.c, 25jan2015
    Fetch an entire row, alleles for all markers for the specified sample. */
+/* 1sep16: Handle different datatypes. */
 
 #include "hdf5.h"
 #include <stdio.h>
@@ -17,15 +18,16 @@ int main (int argc, char *argv[]) {
   hsize_t     filedims[RANK], dimsm[RANK];   
   hsize_t     start[RANK], stride[RANK], count[RANK], block[RANK];
   hid_t       file_id, dataset_id;        /* handles */
-  hid_t       dataspace_id, memspace_id; 
+  hid_t       dataspace_id, memspace_id, datumtype; 
   herr_t      status;                   
 
   FILE *outfile;
-  int i;
+  int datumsize, i, k;
 
   if (argc < 3) {
     printf("Usage: %s <HDF5 file> <sample number> <output file>\n", argv[0]);
     printf("E.g. %s /shared_data/HDF5/Maize/SeeD_unimputed.h5 4844 /tmp/fetchsample.out\n", argv[0]);
+    printf("E.g. %s /shared_data/HDF5/Rice/PhasedSNPs.h5 100 /tmp/fetchsample.out\n", argv[0]);
     printf("Fetch alleles for all markers for the specified sample.\n");
     return 0;
   }
@@ -47,10 +49,14 @@ int main (int argc, char *argv[]) {
   }
   int MarkerTotal = filedims[1];
 
+  /* Determine the datatype and the size of an individual element. */
+  datumtype = H5Dget_type(dataset_id);
+  datumsize = H5Tget_size(datumtype);
+
   /* Create memory space with size of subset. Get file dataspace. */
   dimsm[0] = 1;
   dimsm[1] = MarkerTotal; 
-  char rdata[MarkerTotal];  /* buffer for read */
+  char rdata[MarkerTotal * datumsize];  /* buffer for read */
   memspace_id = H5Screate_simple (RANK, dimsm, NULL); 
   /* Select subset from file dataspace. */
   start[0] = sample; start[1] = 0;
@@ -59,13 +65,17 @@ int main (int argc, char *argv[]) {
   block[0] = 1; block[1] = MarkerTotal;
   status = H5Sselect_hyperslab(dataspace_id, H5S_SELECT_SET, start, stride, count, block);
   /* Read the hyperslab. */
-  status = H5Dread (dataset_id, H5T_NATIVE_CHAR, memspace_id, dataspace_id, H5P_DEFAULT, rdata);
+  status = H5Dread (dataset_id, datumtype, memspace_id, dataspace_id, H5P_DEFAULT, rdata);
 
   /* Write the results to the output file, as a tab-delimited string for each marker. */
   outfile = fopen (outfilename, "w");
-  for (i = 0; i < MarkerTotal - 1; i++)
-    fprintf(outfile, "%c\t", rdata[i]);
-  fprintf(outfile, "%c", rdata[MarkerTotal-1]);
+  for (i = 0; i < MarkerTotal * datumsize; i = i + datumsize) {
+    for (k = 0; k < datumsize; k++) 
+      fprintf(outfile, "%c", rdata[i + k]);
+    /* No trailing <Tab> at end of line. */
+    if (i < (MarkerTotal - 1) * datumsize)
+      fprintf(outfile, "\t");
+  }
   fclose(outfile);
 
   status = H5Sclose (memspace_id);
