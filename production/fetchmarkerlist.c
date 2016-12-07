@@ -1,6 +1,7 @@
 /* fetchmarkerlist.c, 8jun16, from fetchmarker.c, 7may16 from: fetchsample.c, 7may16
    Fetch a set of entire rows, alleles for all samples for the specified list of markers. */
 /* 13jun16, Detect and handle different datatypes. */
+/* 7dec16, Return a row of "N"s if marker number is -1. */
 
 #include "hdf5.h"
 #include <stdio.h>
@@ -71,19 +72,32 @@ int main (int argc, char *argv[]) {
       printf("Marker number %i out of range.\n", markers[i]);
       return 1;
     }
-    start[0] = markers[i];
-    status = H5Sselect_hyperslab(dataspace_id, H5S_SELECT_SET, start, stride, count, block);
-    /* Read the hyperslab. */
-    status = H5Dread (dataset_id, datumtype, memspace_id, dataspace_id, H5P_DEFAULT, rdata);
-    /* Write the results to the output file, as a tab-delimited string for each marker. */
-    for (j = 0; j < SampleTotal * datumsize; j = j + datumsize) {
-      for (k = 0; k < datumsize; k++) 
-	fprintf(outfile, "%c", rdata[j + k]);
-      /* No trailing <Tab> at end of line. */
-      if (j < (SampleTotal - 1) * datumsize)
-	fprintf(outfile, "\t");
+    if (markers[i] < 0) {
+      /* Marker "position" is -1, missing. Return a row of Ns. */
+      for (j = 0; j < SampleTotal * datumsize; j = j + datumsize) {
+	for (k = 0; k < datumsize; k++)
+	  fprintf(outfile, "N");
+	if (j < (SampleTotal - 1) * datumsize)
+	/* No trailing <Tab> at end of line. */
+	  fprintf(outfile, "\t");
+      }
+      fprintf(outfile, "\n");
     }
-    fprintf(outfile, "\n");
+    else {
+      start[0] = markers[i];
+      status = H5Sselect_hyperslab(dataspace_id, H5S_SELECT_SET, start, stride, count, block);
+      /* Read the hyperslab. */
+      status = H5Dread (dataset_id, datumtype, memspace_id, dataspace_id, H5P_DEFAULT, rdata);
+      /* Write the results to the output file, as a tab-delimited string for each marker. */
+      for (j = 0; j < SampleTotal * datumsize; j = j + datumsize) {
+	for (k = 0; k < datumsize; k++) 
+	  fprintf(outfile, "%c", rdata[j + k]);
+	/* No trailing <Tab> at end of line. */
+	if (j < (SampleTotal - 1) * datumsize)
+	  fprintf(outfile, "\t");
+      }
+      fprintf(outfile, "\n");
+    }
   }
   fclose(outfile);
 
