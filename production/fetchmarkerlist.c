@@ -41,11 +41,6 @@ int main (int argc, char *argv[]) {
   char *outfilename = argv[3];
   outfile = fopen (outfilename, "w");
 
-  /* int markercount = argc - 3; */
-  /* int markers[markercount]; */
-  /* for (i = 3; i < argc; i++)  */
-  /*   markers[i - 3] = atoi(argv[i]); */
-
   /* Open the HDF5 file and dataset. */
   file_id = H5Fopen (h5filename, H5F_ACC_RDONLY, H5P_DEFAULT);
   dataset_id = H5Dopen2 (file_id, DATASETNAME, H5P_DEFAULT);
