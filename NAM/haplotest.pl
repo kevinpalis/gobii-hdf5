@@ -1,6 +1,6 @@
-#!/usr/bin/perl
+#!/usr/bin/perl -w
 
-# haplotest.pl, DEM 28jan2016
+# haplotest.pl, 29apr2017, from: haplotest.pl, DEM 28jan2016
 # from haplofetch.php, DEM 29dec2015, from randomfetch.php
 # Test performance of looking up alleles for an arbitrary set of markers for a set of samples with h5fetchbatch().
 # Results are in 2D array alleles[sample][marker].
@@ -12,11 +12,10 @@ my ($i, $j, $m, $n, @markers, @samples, @answers, @alleles);
 my ($answerbatch, $anssize, $ansnumber);
 open (my $logfile, ">>", "haplotest.log");
 
-print "Fetch marker variant calls for a random set of markers and samples.\n";
-
 if (scalar(@ARGV) < 2) {
     print "Usage: haplotest.pl <number of markers> <number of samples>\n";
-    print "Output is in files haplotest.out and haplotest.log\n";
+    print "Fetch marker variant calls for a random set of markers and samples.\n";
+    print "Output is in files /tmp/haplotest.out and ./haplotest.log\n";
     exit;
 }
 
@@ -29,11 +28,11 @@ my $batchlimit = 60;
 
 # Choose the markers.
 for ($i = 0; $i < $markercount; $i++) {
-    $markers[$i] = int(rand(1000000));
+    $markers[$i] = int(rand(31617212));
 }
 # Choose the samples.
 for ($i = 0; $i < $samplecount; $i++) {
-    $samples[$i] = int(rand(5000));
+    $samples[$i] = int(rand(5258));
 }
 
 print ($logfile "Fetching allele calls for $markercount markers and $samplecount samples.\n");
@@ -44,12 +43,14 @@ $m = 0; $n = 0;
 for ($i = 0; $i < $samplecount; $i++) {
     for ($j = 0; $j < $markercount; $j++) {
 	# Build the string of arguments to the h5fetchbatch() command.
-	$batch .= "$markers[$j] $samples[$i] ";
+	# $batch .= "$markers[$j] $samples[$i] ";
+	$batch .= "$samples[$i] $markers[$j] ";
 	$batchsize++;
 	if ($batchsize == $batchlimit) {
 	    # Send the batch of requests to HDF5 and collect the results.
 	    # $answerbatch = system ("h5fetchbatch $batch");
-	    $answerbatch = `h5fetchbatch $batch`;
+	    # $answerbatch = `bin/h5fetchbatch $batch`;
+	    $answerbatch = `bin/fetchpoints /local/data/NAM_HM32/NAMc6-10.h5 /tmp/fetchpoints.out $batch`;
 	    chop $answerbatch;
 	    @answers = split(/ /, $answerbatch);
 	    $anssize = scalar(@answers);
@@ -69,11 +70,13 @@ for ($i = 0; $i < $samplecount; $i++) {
     }
 }
 # Flush-through the last partial batch if any.
-# $answerbatch = system ("h5fetchbatch $batch");
-$answerbatch = `h5fetchbatch $batch`;
+$answerbatch = `bin/fetchpoints /local/data/NAM_HM32/NAMc6-10.h5 /tmp/fetchpoints.out $batch`;
 chop $answerbatch;
-@answers = split(/ /, $answerbatch);
+@answers = split(/\t/, $answerbatch);
+$anssize = scalar(@answers);
 $ansnumber = 0;
+$m = 0; 
+$n = 0;
 while ($ansnumber < $anssize) {
     $alleles[$m][$n] = $answers[$ansnumber];
     $n++;
@@ -88,10 +91,10 @@ print ($logfile "$datapoints datapoints fetched in $elapsed seconds.\n");
 print ($logfile "Writing the output file...\n");
 
 # Output the results.
-open (my $outfile, ">", "haplotest.csv");
+open (my $outfile, ">", "/tmp/haplotest.out");
 for ($i = 0; $i < $markercount; $i++) {
     for ($j = 0; $j < $samplecount; $j++) {
-	print ($outfile $alleles[$j][$i].",");
+	print ($outfile $alleles[$j][$i]."\t");
     }
     print ($outfile "\n");
 }

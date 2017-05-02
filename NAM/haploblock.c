@@ -8,8 +8,7 @@
 #include <errno.h>
 #include <time.h>
 
-#define H5FILE      "/home/matthews/HDF5testing/NAM/gobii.h5"
-#define DATASETNAME "/maizenam_c1+2" 
+#define DATASETNAME "/allelematrix" 
 #define RANK  2                           /* number of dimensions */
 
 int main (int argc, char *argv[]) {
@@ -28,14 +27,16 @@ int main (int argc, char *argv[]) {
   time_t starttime, stoptime;
   int elapsed;
 
-  if (argc < 3) {
-    printf("Usage: %s <number of markers> <number of samples>\n", argv[0]);
-    printf("Output is in haplotest.out and haplotest.log.\n");
+  if (argc < 4) {
+    printf("Usage: %s <HDF5 file> <number of markers> <number of samples>\n", argv[0]);
+    printf("Example: %s /local/data/NAM_HM32/NAMc6-10.h5 50000 1000\n", argv[0]);
+    printf("Output is in /tmp/haplotest.out and ./haplotest.log.\n");
     return 0;
   }
   /* Read the arguments. */
-  int markertotal = atoi(argv[1]);
-  int sampletotal = atoi(argv[2]);
+  char *H5FILE = argv[1];
+  int markertotal = atoi(argv[2]);
+  int sampletotal = atoi(argv[3]);
 
   /* Write a log of the results. */
   logfile = fopen ("haplotest.log", "a");
@@ -47,34 +48,39 @@ int main (int argc, char *argv[]) {
   file_id = H5Fopen (H5FILE, H5F_ACC_RDONLY, H5P_DEFAULT);
   dataset_id = H5Dopen2 (file_id, DATASETNAME, H5P_DEFAULT);
 
+  /* Determine the datatype and the size of an individual element. */
+  hid_t datumtype = H5Dget_type(dataset_id);
+  int datumsize = H5Tget_size(datumtype);
+
   /* First row of the region */
-  row = rand() % 100000;
+  row = rand() % 30000000;
   int firstmarker = row + 1;
   /* First column of the region */
   column = rand() % 1000;
   int firstsample = column + 1;
 
   /* Create memory space with size of subset. Get file dataspace. */
-  dimsm[0] = markertotal;
-  dimsm[1] = sampletotal;
+  /* dimsm[0] = markertotal; */
+  dimsm[0] = 1;
+  dimsm[1] = sampletotal * datumsize;
   memspace_id = H5Screate_simple (RANK, dimsm, NULL); 
   dataspace_id = H5Dget_space (dataset_id);
-  char rdata[markertotal][sampletotal];  /* buffer for read */
-  /* Select subset from file dataspace. */
-  start[0] = firstmarker; start[1] = firstsample;
-  stride[0] = 1; stride[1] = 1;
-  count[0] = 1; count[1] = 1;
-  block[0] = markertotal; block[1] = sampletotal;
-  status = H5Sselect_hyperslab(dataspace_id, H5S_SELECT_SET, start, stride, count, block);
-  /* Read the hyperslab. */
-  status = H5Dread (dataset_id, H5T_NATIVE_CHAR, memspace_id, dataspace_id, H5P_DEFAULT, rdata);
-  /* Write the results to the output file, as a comma-delimited string for each marker. */
-  outfile = fopen ("haplotest.out", "w");
-  fprintf(outfile, "First marker: %i; first sample: %i\n", firstmarker, firstsample);
+  /* char rdata = [markertotal][sampletotal * datumsize]; */
+  char rdata[sampletotal * datumsize];
+  remove("/tmp/haplotest.out");
+  outfile = fopen ("/tmp/haplotest.out", "a");
   for (j = 0; j < markertotal; ++j) {
-    for (i = 0; i < sampletotal; ++i) {
-      fprintf(outfile, "%c,", rdata[j][i]);
-    }
+    /* Select subset from file dataspace. */
+    start[0] = firstmarker + j; start[1] = firstsample;
+    stride[0] = 1; stride[1] = 1;
+    count[0] = 1; count[1] = 1;
+    block[0] = 1; block[1] = sampletotal;
+    status = H5Sselect_hyperslab(dataspace_id, H5S_SELECT_SET, start, stride, count, block);
+    /* Read the hyperslab. */
+    status = H5Dread (dataset_id, datumtype, memspace_id, dataspace_id, H5P_DEFAULT, rdata);
+    /* Write the results to the output file, as a tab-delimited string for each marker. */
+    for (i = 0; i < sampletotal * datumsize; i = i + datumsize) 
+      fprintf(outfile, "%c\t", rdata[i]);
     fprintf(outfile, "\n");
   }
   fclose(outfile);
