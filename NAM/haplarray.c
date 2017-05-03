@@ -1,6 +1,7 @@
 /* haplarray.c, 4mar16, from markersstest.c, 27jan2015
    Test performance of looking up alleles for an arbitrary set of markers 
    for an arbitrary set of samples, non-contiguous. */
+/* 3may17, modify for NAM c6-10 tests */
 
 #include "hdf5.h"
 #include <stdio.h>
@@ -9,8 +10,8 @@
 #include <errno.h>
 #include <time.h>
 
-#define H5FILE      "/home/matthews/HDF5testing/NAM/gobii.h5"
-#define DATASETNAME "/maizenam_c1+2" 
+#define H5FILE      "/local/data/NAM_HM32/NAMc6-10.h5"
+#define DATASETNAME "/allelematrix" 
 #define RANK  2                           /* number of dimensions */
 
 int main (int argc, char *argv[]) {
@@ -33,7 +34,7 @@ int main (int argc, char *argv[]) {
     printf("Usage: %s <number of markers> <number of samples>\n", argv[0]);
     printf("E.g. %s 1000 1000\n", argv[0]);
     printf("Fetch alleles for the specified numbers of random markers and samples.\n");
-    printf("Output is in haplarray.csv and haplarray.log.\n");
+    printf("Output is in /tmp/haplarray.out and ./haplarray.log.\n");
     return 0;
   }
   /* Read the arguments. */
@@ -58,17 +59,18 @@ int main (int argc, char *argv[]) {
   file_id = H5Fopen (H5FILE, H5F_ACC_RDONLY, H5P_DEFAULT);
   dataset_id = H5Dopen2 (file_id, DATASETNAME, H5P_DEFAULT);
 
-  outfile = fopen ("haplarray.csv", "w");
-  for (s = 0; s < sampletotal; ++s)
-    fprintf(outfile, "%i,", samples[s]);
-  fprintf(outfile, "\n");
+  /* Determine the datatype and the size of an individual element. */
+  hid_t datumtype = H5Dget_type(dataset_id);
+  int datumsize = H5Tget_size(datumtype);
+
+  outfile = fopen ("/tmp/haplarray.out", "w");
   /* Create memory space with size of the subset, one row. */
   dimsm[0] = 1;
   dimsm[1] = dim1;
   memspace_id = H5Screate_simple (RANK, dimsm, NULL); 
   /* Get file dataspace. */
   dataspace_id = H5Dget_space (dataset_id);
-  char rdata[1][dim1];  /* buffer for read */
+  char rdata[datumsize][dim1];  /* buffer for read */
   for (i = 0; i < markertotal; ++i) {
     row = rand() % 1000000;
     /* Select subset from file dataspace. */
@@ -78,13 +80,11 @@ int main (int argc, char *argv[]) {
     block[0] = 1; block[1] = dim1;
     status = H5Sselect_hyperslab(dataspace_id, H5S_SELECT_SET, start, stride, count, block);
     /* Read the hyperslab. */
-    status = H5Dread (dataset_id, H5T_NATIVE_CHAR, memspace_id, dataspace_id, H5P_DEFAULT, rdata);
-    /* Output the marker number. */
-    fprintf(outfile, "%i ", row);
-    /* Write the results to the output file, as a comma-delimited string for each marker. */
+    status = H5Dread (dataset_id, datumtype, memspace_id, dataspace_id, H5P_DEFAULT, rdata);
+    /* Write the results to the output file, as a tab-delimited string for each marker. */
     for (s = 0; s < sampletotal; ++s) {
       j = samples[s];
-      fprintf(outfile, "%c,", rdata[0][j]);
+      fprintf(outfile, "%c\t", rdata[0][j]);
     }
     fprintf(outfile, "\n");
   }
