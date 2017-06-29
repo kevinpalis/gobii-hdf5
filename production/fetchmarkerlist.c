@@ -83,7 +83,7 @@ int main (int argc, char *argv[]) {
   infile = fopen (listfilename, "r");
   char *listitem = malloc(100);
   i = 0;
-  while (fgets(listitem, 100, infile)) {
+  while (fgets(listitem, 100, infile) != NULL) {
     markers[i] = atoi(listitem);
     if (markers[i] > markerTotal) {
       printf("Marker number %i out of range.\n", markers[i]);
@@ -121,7 +121,7 @@ int main (int argc, char *argv[]) {
 	    fprintf(outfile, "%c", nullval[k]);
 	else 
 	  for (k = 0; k < datumsize; k++) 
-	    fprintf(outfile, "%c", rdata[markers[i] + k]);
+	    fprintf(outfile, "%c", rdata[(markers[i] * datumsize) + k]);
 	/* No trailing <Tab> at end of line. */
 	if (i < (markerCount - 1))
 	  fprintf(outfile, "\t");
