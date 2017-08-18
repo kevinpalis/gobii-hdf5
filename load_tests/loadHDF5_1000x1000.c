@@ -105,9 +105,6 @@ int main(int argc, char *argv[]) {
     dataspace_id = H5Dget_space (dataset_id);
     /* Find the dimensions of the HDF5 file dataset's dataspace. */
     H5Sget_simple_extent_dims(dataspace_id, filedims, NULL);
-    /* printf("filedims[0] = %i\n", (int) filedims[0]); */
-    /* printf("filedims[1] = %i\n", (int) filedims[1]); */
-    /* return 0; */
     oldmarkercount = filedims[0];
     /* Extend the dimensions. */
     newsize[0] = oldmarkercount + MarkerCount;
