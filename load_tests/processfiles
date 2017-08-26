@@ -1,0 +1,19 @@
+#!/bin/csh
+
+# processfiles, 17aug2017, from: gg:~/bin/renamefiles, DEM 17 Feb 95
+# Run loadHDF5 on a directory of files.
+# Invoke with "processfiles".
+
+date
+chdir /shared_data/NAM_HM32/ifl/chr06/
+foreach file (`ls x*.ifl`)
+	/home/matthews/BTIbucket/data-warehouse-hdf5/load_tests/bin/loadHDF5_1000x1 1 $file /shared_data/NAM_HM32/NAM_1000x1.h5
+	echo $file
+end
+date
+chdir /shared_data/NAM_HM32/ifl/chr07/
+foreach file (`ls x*.ifl`)
+	/home/matthews/BTIbucket/data-warehouse-hdf5/load_tests/bin/loadHDF5_1000x1 1 $file /shared_data/NAM_HM32/NAM_1000x1.h5
+	echo $file
+end
+date
