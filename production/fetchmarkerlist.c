@@ -77,7 +77,7 @@ int main (int argc, char *argv[]) {
   while (fgets (row, 100, infile) != NULL)
     markerCount++;
   fclose(infile);
-  int markers[markerCount];
+  int *markers = malloc(markerCount * sizeof(int));
 
   /* Read in the list of marker positions into array markers[]. */
   infile = fopen (listfilename, "r");
