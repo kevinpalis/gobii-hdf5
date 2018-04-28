@@ -1,3 +1,4 @@
+/* loadHDF5.c, 28apr2018, BUG REMOVED, from: */
 /* loadHDF5.c, 1jul2016, from loadIFF.c, jun 15,16, from: loadPhased.c, DEM 1may16, from: loadSEED.c, DEM 6apr2016, ...
    from example code h5_crtdat.c etc.  */
 
@@ -194,7 +195,7 @@ int main(int argc, char *argv[]) {
     }
     if (batchcounter == batchsize - 1) {
       /* Adjust the hyperslab column. */
-      offset[1] = (rownum - batchcounter) * datumsize;
+      offset[1] = (rownum - batchcounter);
       /* Transpose the array, one sample at a time, and write to the HDF5 file. */
       for (i = 0; i < SampleCount; i++) {
 	for (j = 0; j < batchcounter; j++)
@@ -209,10 +210,11 @@ int main(int argc, char *argv[]) {
     rownum++;
     batchcounter++;
   }
+
   /* At end of file. Now write out the remaining fraction of a batch. */
   dimsmem[1] = batchcounter;
   rmemspace_id = H5Screate_simple(2, dimsmem, NULL);
-  offset[1] = (rownum - batchcounter) * datumsize;
+  offset[1] = (rownum - batchcounter);
   blocksize[1] = batchcounter;
   for (i = 0; i < SampleCount; i++) {
     for (j = 0; j < batchcounter; j++)
