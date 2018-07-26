@@ -1,3 +1,5 @@
+/* loadHDF5, 26jul2018, from: */
+/* loadHDF5_wide_batchcounter.c, 25jul2018, from: loadHDF5_wide.c, 14jul2018: from: */
 /* loadHDF5.c, 28apr2018, BUG REMOVED, from: */
 /* loadHDF5.c, 1jul2016, from loadIFF.c, jun 15,16, from: loadPhased.c, DEM 1may16, from: loadSEED.c, DEM 6apr2016, ...
    from example code h5_crtdat.c etc.  */
@@ -6,8 +8,11 @@
    Load both normal orientation (sites-fast) and transposed (taxa-fast).
    No header row or column, values Tab-separated.
    HDF5 datasize is passed as command line argument.    
+   Increase limit on line length from 100,000 to 100,000,000. 
+   25jul18: Fixed two bugs in batchcounter.
 */
 
+/*#include "hdf5.h"*/
 #include "hdf5.h"
 #include <stdio.h>
 #include <string.h>
@@ -58,8 +63,8 @@ int main(int argc, char *argv[]) {
 
   /* Read the first line of the input file to get the number of samples. */
   infile = fopen (infilename, "r");
-  row = malloc(100000);
-  row = fgets (row, 100000, infile);
+  row = malloc(100000000);
+  row = fgets (row, 100000000, infile);
   outndx = 0;
   token = strtok(row, "\t");
   while ((token = strtok(NULL, "\t")))
@@ -71,9 +76,9 @@ int main(int argc, char *argv[]) {
 
   /* Read the whole file through to get the number of markers.  (wc -l?) */
   infile = fopen(infilename, "r");
-  row = malloc(100000);
+  row = malloc(100000000);
   int markernum = 0;
-  while (fgets (row, 100000, infile) != NULL)
+  while (fgets (row, 100000000, infile) != NULL)
     markernum++;
   int MarkerCount = markernum;
   fclose(infile);
@@ -103,12 +108,11 @@ int main(int argc, char *argv[]) {
   count[0] = 1; count[1] = 1;
   blocksize[0] = 1; blocksize[1] = SampleCount;
 
-  /* char dset_data[100000]; */
-  char *dset_data = malloc(100000 * datumsize);
+  char *dset_data = malloc(100000000 * datumsize);
   rownum = 0;
   infile = fopen(infilename, "r");
-  row = malloc(100000);
-  while (fgets (row, 100000, infile)) {
+  row = malloc(100000000);
+  while (fgets (row, 100000000, infile)) {
     token = strtok(row, "\t");
     outndx = 0;
     int i = 0;
@@ -178,11 +182,11 @@ int main(int argc, char *argv[]) {
   char sampledata[batchsize * datumsize];
 
   /* Read in the input file. */
-  char *row2 = malloc(100000);
+  char *row2 = malloc(100000000);
   FILE *infile2 = fopen (infilename, "r");
   rownum = 0;
   int batchcounter = 0;
-  while (fgets (row2, 100000, infile2)) {
+  while (fgets (row2, 100000000, infile2)) {
     token = strtok(row2, "\t");
     outndx = 0;
     for (i = 0; i < datumsize; i++)
@@ -198,17 +202,21 @@ int main(int argc, char *argv[]) {
       offset[1] = (rownum - batchcounter);
       /* Transpose the array, one sample at a time, and write to the HDF5 file. */
       for (i = 0; i < SampleCount; i++) {
-	for (j = 0; j < batchcounter; j++)
+	// Bugfix:
+	//for (j = 0; j < batchcounter; j++)
+	for (j = 0; j <= batchcounter; j++)
 	  for (k = 0; k < datumsize; k++)
 	    sampledata[(j * datumsize) + k] = batch_data[(i * datumsize) + k][j];
 	offset[0] = i;
 	status = H5Sselect_hyperslab(dataspace_id, H5S_SELECT_SET, offset, stride, count, blocksize);
 	status = H5Dwrite(dataset_id, datumtype, memspace_id, dataspace_id, H5P_DEFAULT, sampledata);
       }
-      batchcounter = 0;
+      // Oops, we want batchcounter set back to 0 AFTER the incrementing below.
+      //batchcounter = 0;
+      batchcounter = -1;
     }
-    rownum++;
     batchcounter++;
+    rownum++;
   }
 
   /* At end of file. Now write out the remaining fraction of a batch. */
