@@ -1,0 +1,327 @@
+Number of markers: 1000
+Mode: random
+Elapsed time: 17 seconds
+
+Number of markers: 5000
+Mode: random
+Elapsed time: 71 seconds
+
+Number of markers: 10000
+Mode: random
+Elapsed time: 90 seconds
+
+Number of markers: 50000
+Mode: random
+Elapsed time: 702 seconds
+
+Number of markers: 100000
+Mode: random
+Elapsed time: 869 seconds
+
+Number of markers: 500000
+Mode: random
+Elapsed time: 8859 seconds
+
+Number of markers: 1000000
+Mode: random
+Elapsed time: 9496 seconds
+
+Number of markers: 5000000
+Mode: random
+Elapsed time: 40326 seconds
+
+Number of markers: 100000
+Mode: random
+Elapsed time: 10 seconds
+
+Number of markers: 500000
+Mode: random
+Elapsed time: 2790 seconds
+
+Number of markers: 1000000
+Mode: random
+Elapsed time: 3477 seconds
+
+======= Re-run fetchmarkerlist_test
+Number of markers: 1000
+Mode: random
+Elapsed time: 3 seconds
+
+Number of markers: 5000
+Mode: random
+Elapsed time: 19 seconds
+
+Number of markers: 10000
+Mode: random
+Elapsed time: 18 seconds
+
+Number of markers: 50000
+Mode: random
+Elapsed time: 127 seconds
+
+Number of markers: 100000
+Mode: random
+Elapsed time: 172 seconds
+
+Number of markers: 500000
+Mode: random
+Elapsed time: 1755 seconds
+
+Number of markers: 1000000
+Mode: random
+Elapsed time: 2870 seconds
+
+Number of markers: 5000000
+Mode: random
+Elapsed time: 27246 seconds
+
+Number of markers: 1000
+Mode: contiguous
+Elapsed time: 1 seconds
+
+Number of markers: 5000
+Mode: contiguous
+Elapsed time: 0 seconds
+
+Number of markers: 10000
+Mode: contiguous
+Elapsed time: 1 seconds
+
+Number of markers: 50000
+Mode: contiguous
+Elapsed time: 7 seconds
+
+Number of markers: 100000
+Mode: contiguous
+Elapsed time: 9 seconds
+
+Number of markers: 500000
+Mode: contiguous
+Elapsed time: 63 seconds
+
+Number of markers: 1000000
+Mode: contiguous
+Elapsed time: 127 seconds
+
+Number of markers: 5000000
+Mode: contiguous
+Elapsed time: 639 seconds
+
+Number of markers: 1000
+Mode: random
+Elapsed time: 7 seconds
+
+Number of markers: 5000
+Mode: random
+Elapsed time: 33 seconds
+
+Number of markers: 10000
+Mode: random
+Elapsed time: 41 seconds
+
+Number of markers: 50000
+Mode: random
+Elapsed time: 331 seconds
+
+Number of markers: 100000
+Mode: random
+Elapsed time: 694 seconds
+
+Number of markers: 500000
+Mode: random
+Elapsed time: 3799 seconds
+
+Number of markers: 1000000
+Mode: random
+Elapsed time: 7275 seconds
+
+Number of markers: 5000000
+Mode: random
+Elapsed time: 32619 seconds
+
+======== re-run again, 6may
+Number of markers: 50000
+Mode: random
+Elapsed time: 422 seconds
+
+Number of markers: 1000000
+Mode: random
+Elapsed time: 7746 seconds
+
+======= fetchmarkerlist_rand.c
+Number of markers: 50000
+Mode: random
+Elapsed time: 12 seconds
+
+Number of markers: 1000000
+Mode: random
+Elapsed time: 6666 seconds
+
+Number of markers: 50000
+Mode: random
+Elapsed time: 5 seconds
+
+======= fetchmarkerlist_test
+Number of markers: 100000
+Mode: random
+Elapsed time: 12 seconds
+
+Number of markers: 500000
+Mode: random
+Elapsed time: 52 seconds
+
+Number of markers: 1000000
+Mode: random
+Elapsed time: 104 seconds
+
+Number of markers: 5000000
+Mode: random
+Elapsed time: 22981 seconds
+
+======= fetchmarkerblock (contiguous) again, 9may
+Number of markers: 1000
+Mode: contiguous
+Elapsed time: 1 seconds
+
+Number of markers: 5000
+Mode: contiguous
+Elapsed time: 0 seconds
+
+Number of markers: 10000
+Mode: contiguous
+Elapsed time: 1 seconds
+
+Number of markers: 50000
+Mode: contiguous
+Elapsed time: 6 seconds
+
+Number of markers: 100000
+Mode: contiguous
+Elapsed time: 15 seconds
+
+Number of markers: 500000
+Mode: contiguous
+Elapsed time: 71 seconds
+
+Number of markers: 1000000
+Mode: contiguous
+Elapsed time: 141 seconds
+
+Number of markers: 5000000
+Mode: contiguous
+Elapsed time: 745 seconds
+
+=========== fetchmarkerlist_test
+Number of markers: 1000000
+Mode: random
+Elapsed time: 4164 seconds
+
+Number of markers: 500000
+Mode: random
+Elapsed time: 52 seconds
+
+Number of markers: 100000
+Mode: random
+Elapsed time: 10 seconds
+
+=========== fetchmarkerlist_rand, 25jul2017
+Number of markers: 1000
+Mode: random
+Elapsed time: 9 seconds
+
+Number of markers: 1000
+Mode: random
+Elapsed time: 8 seconds
+
+Number of markers: 5000
+Mode: random
+Elapsed time: 34 seconds
+
+Number of markers: 10000
+Mode: random
+Elapsed time: 45 seconds
+
+Number of markers: 50000
+Mode: random
+Elapsed time: 348 seconds
+
+Number of markers: 100000
+Mode: random
+Elapsed time: 446 seconds
+
+Number of markers: 500000
+Mode: random
+Elapsed time: 3469 seconds
+
+Number of markers: 1000000
+Mode: random
+Elapsed time: 4128 seconds
+
+Number of markers: 5000000
+Mode: random
+Elapsed time: 21918 seconds
+
+Number of markers: 1000
+Mode: random
+Elapsed time: 4 seconds
+
+Number of markers: 5000
+Mode: random
+Elapsed time: 15 seconds
+
+Number of markers: 10000
+Mode: random
+Elapsed time: 18 seconds
+
+Number of markers: 50000
+Mode: random
+Elapsed time: 165 seconds
+
+Number of markers: 100000
+Mode: random
+Elapsed time: 211 seconds
+
+Number of markers: 500000
+Mode: random
+Elapsed time: 1880 seconds
+
+Number of markers: 1000000
+Mode: random
+Elapsed time: 3366 seconds
+
+Number of markers: 5000000
+Mode: random
+Elapsed time: 18596 seconds
+
+Number of markers: 1000
+Mode: random
+Elapsed time: 3 seconds
+
+Number of markers: 5000
+Mode: random
+Elapsed time: 18 seconds
+
+Number of markers: 10000
+Mode: random
+Elapsed time: 23 seconds
+
+Number of markers: 50000
+Mode: random
+Elapsed time: 168 seconds
+
+Number of markers: 100000
+Mode: random
+Elapsed time: 213 seconds
+
+Number of markers: 500000
+Mode: random
+Elapsed time: 1664 seconds
+
+Number of markers: 1000000
+Mode: random
+Elapsed time: 1891 seconds
+
+Number of markers: 5000000
+Mode: random
+Elapsed time: 22283 seconds
+
