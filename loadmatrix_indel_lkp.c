@@ -1,11 +1,15 @@
-/* loadmatrix.c, 22oct19, from:
+/* loadmatrix_indel_lkp.c, 9nov19, from:
+   loadmatrix_indel.c, 1nov19, from loadmatrix.c, 22oct19, from:
    loadNAMc6-10.c, from loadHDF5.c, 1jul2016,.. from: loadSEED.c, DEM 6apr2016, ...
    from example code h5_crtdat.c etc.  */
 
 /* Load one dataset in tsv format into the specified HDF5 file. 
    Load both normal orientation (sites-fast) and transposed (taxa-fast).
    No header row or colum. Values tab-separated.
-   HDF5 datasize is passed as command line argument.    
+   HDF5 datasize is passed as command line argument. 
+   Allow indels up to 100bp, increasing datasize and max length of rows of the input file.
+   Use a lookup table to store the insert sequences, instead of padding.  See the plan at
+   http://cbsugobii05.tc.cornell.edu:6084/display/TD/HDF5+Redesign
 */
 
 #include "hdf5.h"
@@ -18,8 +22,8 @@ int main(int argc, char *argv[]) {
 
   if (argc < 4) {
     printf("Usage: %s <datasize> <input file> <output HDF5 file>\n", argv[0]);
-    printf("Example: %s 3 /data/polyploid_indel_benchmarking/generated_dataset_snp.matrix /data/polyploid_indel_benchmarking/generated_dataset_snp.h5\n", argv[0]);
-    printf("<datasize> is a numeric value between 1 and 10.\n");
+    printf("Example: %s 4 /data/polyploid_indel_benchmarking/generated_dataset_indels100.matrix /data/polyploid_indel_benchmarking/generated_dataset_indels100_lkp.h5\n", argv[0]);
+    printf("<datasize> is 4, e.g. \"C/T\" plus the trailing null.\n");
     return 0;
   }
 
@@ -47,8 +51,11 @@ int main(int argc, char *argv[]) {
   } 
   char *infilename = argv[2];
   char *h5file = argv[3];
+  // Create the text file to store the insert sequences.
+  char *lookuplist = strdup(h5file);
+  strcat(lookuplist, ".inserts");
+  FILE *inserts = fopen(lookuplist, "w");
   char *h5dataset = "allelematrix";
-
   /* Create a new HDF5 file using default properties. */
   file_id = H5Fcreate(h5file, H5F_ACC_TRUNC, H5P_DEFAULT, H5P_DEFAULT);
   /* Open the file.  */
@@ -56,8 +63,8 @@ int main(int argc, char *argv[]) {
 
   /* Read the first line of the input file to get the number of samples. */
   infile = fopen (infilename, "r");
-  row = malloc(100000);
-  row = fgets (row, 100000, infile);
+  row = malloc(500000);
+  row = fgets (row, 500000, infile);
   token = strtok(row, "\t\n");
   outndx = 1;
   while ((token = strtok(NULL, "\t\n")))
@@ -69,9 +76,9 @@ int main(int argc, char *argv[]) {
 
   /* Read the whole file through to get the number of markers.  (wc -l?) */
   infile = fopen(infilename, "r");
-  row = malloc(100000);
+  row = malloc(500000);
   int markernum = 0;
-  while (fgets (row, 100000, infile) != NULL)
+  while (fgets (row, 500000, infile) != NULL)
     markernum++;
   int MarkerCount = markernum;
   fclose(infile);
@@ -101,26 +108,68 @@ int main(int argc, char *argv[]) {
   count[0] = 1; count[1] = 1;
   blocksize[0] = 1; blocksize[1] = SampleCount;
 
-  /* char dset_data[100000]; */
   char *dset_data = malloc(100000 * datumsize);
   rownum = 0;
   infile = fopen(infilename, "r");
-  row = malloc(100000);
-  while (fgets (row, 100000, infile)) {
-    token = strtok(row, "\t");
+  row = malloc(500000);
+  char **saveptr = malloc(sizeof(char *));  // for strtok_r()
+  char **saveptr2 = malloc(sizeof(char *));
+  char *tok1 = malloc(101);
+  char *tok2 = malloc(101);
+  char *insert = malloc(101);
+  while (fgets (row, 500000, infile)) {
+    /* insert = ""; // NO! Trashes the malloc size to huge. */
+    insert[0] = '\0';
+    token = strtok_r(row, "\t", saveptr);
     outndx = 0;
     int i = 0;
-    while (token[i] != '\0') {
-      dset_data[i] = token[i];
-      i++;
+    // Check the token for an insert.
+    if (strlen(token) > 3) {
+      // Extract the insert.  Note: Need work here if this marker has more than one insert sequence.
+      tok1 = strtok_r(token, "/|", saveptr2); 
+      if (strlen(tok1) > 1) {
+	strcpy(insert, tok1);
+	/* tok1[0] = 128;  // Replace the insert sequence with the first high-ASCII character? */
+	tok1 = "1";
+      }
+      tok2 = strtok_r(NULL, "/|", saveptr2);
+      if (strlen(tok2) > 1) {
+	strcpy(insert, tok2);
+	tok2 = "1";
+      }
+      dset_data[i] = tok1[0]; i++;
+      dset_data[i] = 47; i++; // asc("/")
+      dset_data[i] = tok2[0]; i++;
+      dset_data[i] = '\0';
     }
-    while ((token = strtok(NULL, "\t\n\r"))) {
-      /* Read the rest of the input line into dset_data[]. */
-      ++outndx;
+    else {
+      for (i=0; i<datumsize; i++) 
+	dset_data[i] = token[i]; 	
+    }
+    /* Read the rest of the input line into dset_data[]. */
+    while ((token = strtok_r(NULL, "\t\n\r", saveptr))) {
+      outndx++;
       i = 0;
-      while (token[i] != '\0') {
-	dset_data[(outndx * datumsize) + i] = token[i];
-	i++;
+      // Check the token for an insert.  
+      if (strlen(token) > 3) {
+	// Extract the insert.  
+	tok1 = strtok_r(token, "/|", saveptr2); 
+	if (strlen(tok1) > 1) {
+	  strcpy(insert, tok1);
+	  tok1 = "1";
+	}
+	tok2 = strtok_r(NULL, "/|", saveptr2);
+	if (strlen(tok2) > 1) {
+	  strcpy(insert, tok2);
+	  tok2 = "1";
+	}
+	dset_data[(outndx * datumsize) + i++] = tok1[0];
+	dset_data[(outndx * datumsize) + i++] = 47; // asc("/")
+	dset_data[(outndx * datumsize) + i++] = tok2[0];
+      }
+      else {
+	for (i=0; i<datumsize; i++) 
+	  dset_data[(outndx * datumsize) + i] = token[i];
       }
     }
     /* Adjust the hyperslab row. */
@@ -128,7 +177,14 @@ int main(int argc, char *argv[]) {
     status = H5Sselect_hyperslab(dataspace_id, H5S_SELECT_SET, offset, stride, count, blocksize);
     /* Write the row. */
     status = H5Dwrite(dataset_id, datumtype, memspace_id, dataspace_id, H5P_DEFAULT, dset_data);
-    ++rownum;
+
+    /* Write the insert for this marker to the text lookup-list file. */
+    if (strlen(insert) > 1) {
+      fprintf(inserts, "%i\t%s\n", rownum, insert);
+      insert[0] = '\0';
+    }
+
+    rownum++;
   }
   fclose(infile);
   free(dset_data);
@@ -176,21 +232,53 @@ int main(int argc, char *argv[]) {
   char sampledata[batchsize * datumsize];
 
   /* Read in the input file. */
-  char *row2 = malloc(100000);
+  char *row2 = malloc(500000);
   FILE *infile2 = fopen (infilename, "r");
   rownum = 0;
   int batchcounter = 0;
-  while (fgets (row2, 100000, infile2)) {
+  while (fgets (row2, 500000, infile2)) {
     outndx = 0;
     // Read in the first token, column 0.
-    token = strtok(row2, "\t");
-    for (i = 0; i < datumsize; i++)
-      batch_data[i][batchcounter] = token[i];
+    token = strtok_r(row2, "\t", saveptr);
+    // Check the token for an insert.
+    if (strlen(token) > 3) {
+      // Extract the insert.  Note: Need work here if this marker has more than one insert sequence.
+      tok1 = strtok_r(token, "/|", saveptr2); 
+      if (strlen(tok1) > 1) 
+	/* tok1[0] = 128;  // Replace the insert sequence with the first high-ASCII character? */
+	tok1 = "1";
+      tok2 = strtok_r(NULL, "/|", saveptr2);
+      if (strlen(tok2) > 1) 
+	tok2 = "1";
+      i = 0;
+      batch_data[i][batchcounter] = tok1[0]; i++;
+      batch_data[i][batchcounter] = 47; i++;  // asc("/")
+      batch_data[i][batchcounter] = tok2[0]; i++;
+      batch_data[i][batchcounter] = '\0';
+    }
+    else
+      for (i = 0; i < datumsize; i++)
+	batch_data[i][batchcounter] = token[i];
     outndx++;
     /* Read the rest of the input line into batch_data[]. */
-    while (token = strtok(NULL, "\t\n\r")) {
-      for (i = 0; i < datumsize; i++)
-	batch_data[(outndx * datumsize) + i][batchcounter] = token[i];
+    while (token = strtok_r(NULL, "\t\n\r", saveptr)) {
+      // Check the token for an insert.
+      if (strlen(token) > 3) {
+	tok1 = strtok_r(token, "/|", saveptr2); 
+	if (strlen(tok1) > 1) 
+	  tok1 = "1";
+	tok2 = strtok_r(NULL, "/|", saveptr2);
+	if (strlen(tok2) > 1) 
+	  tok2 = "1";
+	i = 0;
+	batch_data[(outndx * datumsize) + i][batchcounter] = tok1[0]; i++;
+	batch_data[(outndx * datumsize) + i][batchcounter] = 47; i++;  // asc("/")
+	batch_data[(outndx * datumsize) + i][batchcounter] = tok2[0]; i++;
+	batch_data[(outndx * datumsize) + i][batchcounter] = '\0';
+      }
+      else
+	for (i = 0; i < datumsize; i++)
+	  batch_data[(outndx * datumsize) + i][batchcounter] = token[i];
       outndx++;
     }
     if (batchcounter == batchsize) {

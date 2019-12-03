@@ -1,11 +1,13 @@
-/* loadmatrix.c, 22oct19, from:
+/* loadmatrix_indel_pad.c, 21nov19 from:
+   loadmatrix_indel.c, 1nov19, from loadmatrix.c, 22oct19, from:
    loadNAMc6-10.c, from loadHDF5.c, 1jul2016,.. from: loadSEED.c, DEM 6apr2016, ...
    from example code h5_crtdat.c etc.  */
 
 /* Load one dataset in tsv format into the specified HDF5 file. 
    Load both normal orientation (sites-fast) and transposed (taxa-fast).
    No header row or colum. Values tab-separated.
-   HDF5 datasize is passed as command line argument.    
+   HDF5 datasize is passed as command line argument. 
+   Allow indels up to 100bp, increasing datasize and max length of rows of the input file.
 */
 
 #include "hdf5.h"
@@ -18,8 +20,8 @@ int main(int argc, char *argv[]) {
 
   if (argc < 4) {
     printf("Usage: %s <datasize> <input file> <output HDF5 file>\n", argv[0]);
-    printf("Example: %s 3 /data/polyploid_indel_benchmarking/generated_dataset_snp.matrix /data/polyploid_indel_benchmarking/generated_dataset_snp.h5\n", argv[0]);
-    printf("<datasize> is a numeric value between 1 and 10.\n");
+    printf("Example: %s 202 /data/polyploid_indel_benchmarking/generated_dataset_indels100.matrix /data/polyploid_indel_benchmarking/generated_dataset_indels100.pad.h5\n", argv[0]);
+    printf("<datasize> is a numeric value between 1 and 202.\n");
     return 0;
   }
 
@@ -38,7 +40,7 @@ int main(int argc, char *argv[]) {
 
   datumsize = atoi(argv[1]);
   //only creates datumtype for valid numeric entry & 
-  if (datumsize >  0 && datumsize <= 10  ) {
+  if (datumsize >  0 && datumsize <= 202  ) {
     datumtype = H5Tcreate(H5T_STRING,datumsize);
   } else {
     printf("Invalid <datasize>.\n");	
@@ -56,8 +58,8 @@ int main(int argc, char *argv[]) {
 
   /* Read the first line of the input file to get the number of samples. */
   infile = fopen (infilename, "r");
-  row = malloc(100000);
-  row = fgets (row, 100000, infile);
+  row = malloc(500000);
+  row = fgets (row, 500000, infile);
   token = strtok(row, "\t\n");
   outndx = 1;
   while ((token = strtok(NULL, "\t\n")))
@@ -69,9 +71,9 @@ int main(int argc, char *argv[]) {
 
   /* Read the whole file through to get the number of markers.  (wc -l?) */
   infile = fopen(infilename, "r");
-  row = malloc(100000);
+  row = malloc(500000);
   int markernum = 0;
-  while (fgets (row, 100000, infile) != NULL)
+  while (fgets (row, 500000, infile) != NULL)
     markernum++;
   int MarkerCount = markernum;
   fclose(infile);
@@ -105,24 +107,22 @@ int main(int argc, char *argv[]) {
   char *dset_data = malloc(100000 * datumsize);
   rownum = 0;
   infile = fopen(infilename, "r");
-  row = malloc(100000);
-  while (fgets (row, 100000, infile)) {
+  row = malloc(500000);
+  while (fgets (row, 500000, infile)) {
+    // Get the first token.
     token = strtok(row, "\t");
     outndx = 0;
-    int i = 0;
-    while (token[i] != '\0') {
+    for (i=0; i < strlen(token); i++)
       dset_data[i] = token[i];
-      i++;
-    }
+    dset_data[i] = '\0';   // Append the string-terminating null.
+    /* Read the rest of the input line into dset_data[], one token at a time. */
     while ((token = strtok(NULL, "\t\n\r"))) {
-      /* Read the rest of the input line into dset_data[]. */
       ++outndx;
-      i = 0;
-      while (token[i] != '\0') {
+      for (i=0; i < strlen(token); i++)
 	dset_data[(outndx * datumsize) + i] = token[i];
-	i++;
-      }
+      dset_data[(outndx * datumsize) + i] = '\0';
     }
+
     /* Adjust the hyperslab row. */
     offset[0] = rownum;
     status = H5Sselect_hyperslab(dataspace_id, H5S_SELECT_SET, offset, stride, count, blocksize);
@@ -140,6 +140,7 @@ int main(int argc, char *argv[]) {
   /* End access to the data spaces. */
   status = H5Sclose(dataspace_id);
   status = H5Sclose(memspace_id);
+
 
   /******************************************/
   /* Second dataset, transposed orientation */
@@ -176,20 +177,20 @@ int main(int argc, char *argv[]) {
   char sampledata[batchsize * datumsize];
 
   /* Read in the input file. */
-  char *row2 = malloc(100000);
+  char *row2 = malloc(500000);
   FILE *infile2 = fopen (infilename, "r");
   rownum = 0;
   int batchcounter = 0;
-  while (fgets (row2, 100000, infile2)) {
+  while (fgets (row2, 500000, infile2)) {
     outndx = 0;
     // Read in the first token, column 0.
     token = strtok(row2, "\t");
-    for (i = 0; i < datumsize; i++)
+    for (i=0; i <= strlen(token); i++)  // Include the string-terminating null.
       batch_data[i][batchcounter] = token[i];
     outndx++;
     /* Read the rest of the input line into batch_data[]. */
     while (token = strtok(NULL, "\t\n\r")) {
-      for (i = 0; i < datumsize; i++)
+      for (i=0; i <= strlen(token); i++)
 	batch_data[(outndx * datumsize) + i][batchcounter] = token[i];
       outndx++;
     }
