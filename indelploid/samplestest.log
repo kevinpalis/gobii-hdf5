@@ -1,0 +1,149 @@
+SNPs only. Number of samples: 50
+Mode: random
+Elapsed time: 142 seconds
+
+SNPs only. Number of samples: 50
+Mode: random
+Elapsed time: 42 seconds
+
+SNPs only. Number of samples: 50
+Mode: random
+Elapsed time: 37 seconds
+
+SNPs only. Number of samples: 100
+Mode: random
+Elapsed time: 97 seconds
+
+SNPs only. Number of samples: 500
+Mode: random
+Elapsed time: 475 seconds
+
+SNPs only. Number of samples: 1000
+Mode: random
+Elapsed time: 1000 seconds
+
+SNPs only. Number of samples: 2000
+Mode: random
+Elapsed time: 1801 seconds
+
+SNPs only. Number of samples: 3000
+Mode: random
+Elapsed time: 2558 seconds
+
+SNPs only. Number of samples: 100
+Mode: random
+Elapsed time: 86 seconds
+
+SNPs only. Number of samples: 500
+Mode: random
+Elapsed time: 426 seconds
+
+SNPs only. Number of samples: 1000
+Mode: random
+Elapsed time: 853 seconds
+
+SNPs only. Number of samples: 2000
+Mode: random
+Elapsed time: 1711 seconds
+
+SNPs only. Number of samples: 3000
+Mode: random
+Elapsed time: 2555 seconds
+
+SNPs only. Number of samples: 100
+Mode: random
+Elapsed time: 94 seconds
+
+SNPs only. Number of samples: 500
+Mode: random
+Elapsed time: 415 seconds
+
+SNPs only. Number of samples: 1000
+Mode: random
+Elapsed time: 879 seconds
+
+SNPs only. Number of samples: 2000
+Mode: random
+Elapsed time: 1716 seconds
+
+SNPs only. Number of samples: 3000
+Mode: random
+Elapsed time: 2635 seconds
+
+========
+Indels, lookup table. Number of samples: 50
+Mode: random
+Elapsed time: 40 seconds
+
+Indels, lookup table. Number of samples: 50
+Mode: random
+Elapsed time: 44 seconds
+
+Indels, lookup table. Number of samples: 50
+Mode: random
+Elapsed time: 43 seconds
+
+Indels, lookup table. Number of samples: 50
+Mode: random
+Elapsed time: 50 seconds
+
+Indels, lookup table. Number of samples: 100
+Mode: random
+Elapsed time: 81 seconds
+
+Indels, lookup table. Number of samples: 500
+Mode: random
+Elapsed time: 620 seconds
+
+Indels, lookup table. Number of samples: 1000
+Mode: random
+Elapsed time: 1238 seconds
+
+Indels, lookup table. Number of samples: 2000
+Mode: random
+Elapsed time: 2324 seconds
+
+Indels, lookup table. Number of samples: 3000
+Mode: random
+Elapsed time: 3368 seconds
+
+Indels, lookup table. Number of samples: 100
+Mode: random
+Elapsed time: 133 seconds
+
+Indels, lookup table. Number of samples: 500
+Mode: random
+Elapsed time: 589 seconds
+
+Indels, lookup table. Number of samples: 1000
+Mode: random
+Elapsed time: 1167 seconds
+
+Indels, lookup table. Number of samples: 2000
+Mode: random
+Elapsed time: 2252 seconds
+
+Indels, lookup table. Number of samples: 3000
+Mode: random
+Elapsed time: 3410 seconds
+
+Indels, lookup table. Number of samples: 100
+Mode: random
+Elapsed time: 136 seconds
+
+Indels, lookup table. Number of samples: 500
+Mode: random
+Elapsed time: 566 seconds
+
+Indels, lookup table. Number of samples: 1000
+Mode: random
+Elapsed time: 1179 seconds
+
+Indels, lookup table. Number of samples: 2000
+Mode: random
+Elapsed time: 2261 seconds
+
+Indels, lookup table. Number of samples: 3000
+Mode: random
+Elapsed time: 3409 seconds
+

@@ -1,0 +1,115 @@
+./a.out
+Fetching allele calls for 100 markers and 100 samples.
+Mode: contiguous
+Elapsed time: 1 seconds
+
+bin/haploblock_indel
+Fetching allele calls for 1000 markers and 1000 samples.
+Mode: contiguous
+Elapsed time: 1 seconds
+
+bin/haploblock_indel
+Fetching allele calls for 50000 markers and 1000 samples.
+Mode: contiguous
+Elapsed time: 7 seconds
+
+bin/haploblock_indel
+Fetching allele calls for 50000 markers and 2000 samples.
+Mode: contiguous
+Elapsed time: 5 seconds
+
+bin/haploblock_indel
+Fetching allele calls for 50000 markers and 1000 samples.
+Mode: contiguous
+Elapsed time: 4 seconds
+
+bin/haploblock_indel
+Fetching allele calls for 1000000 markers and 1000 samples.
+Mode: contiguous
+Elapsed time: 56 seconds
+
+bin/haploblock_indel
+Fetching allele calls for 1000000 markers and 2000 samples.
+Mode: contiguous
+Elapsed time: 95 seconds
+
+bin/haploblock_indel
+Fetching allele calls for 1000000 markers and 3000 samples.
+Mode: contiguous
+Elapsed time: 130 seconds
+
+bin/haploblock_indel
+Fetching allele calls for 1000 markers and 1000 samples.
+Mode: contiguous
+Elapsed time: 6 seconds
+
+bin/haploblock_indel
+Fetching allele calls for 50000 markers and 1000 samples.
+Mode: contiguous
+Elapsed time: 3 seconds
+
+bin/haploblock_indel
+Fetching allele calls for 50000 markers and 2000 samples.
+Mode: contiguous
+Elapsed time: 5 seconds
+
+bin/haploblock_indel
+Fetching allele calls for 50000 markers and 3000 samples.
+Mode: contiguous
+Elapsed time: 8 seconds
+
+bin/haploblock_indel
+Fetching allele calls for 1000000 markers and 1000 samples.
+Mode: contiguous
+Elapsed time: 46 seconds
+
+bin/haploblock_indel
+Fetching allele calls for 1000000 markers and 2000 samples.
+Mode: contiguous
+Elapsed time: 87 seconds
+
+bin/haploblock_indel
+Fetching allele calls for 1000000 markers and 3000 samples.
+Mode: contiguous
+Elapsed time: 125 seconds
+
+bin/haploblock_indel
+Fetching allele calls for 1000 markers and 1000 samples.
+Mode: contiguous
+Elapsed time: 5 seconds
+
+bin/haploblock_indel
+Fetching allele calls for 50000 markers and 1000 samples.
+Mode: contiguous
+Elapsed time: 3 seconds
+
+bin/haploblock_indel
+Fetching allele calls for 50000 markers and 3000 samples.
+Mode: contiguous
+Elapsed time: 8 seconds
+
+bin/haploblock_indel
+Fetching allele calls for 50000 markers and 3000 samples.
+Mode: contiguous
+Elapsed time: 8 seconds
+
+bin/haploblock_indel
+Fetching allele calls for 1000000 markers and 1000 samples.
+Mode: contiguous
+Elapsed time: 46 seconds
+
+bin/haploblock_indel
+Fetching allele calls for 1000000 markers and 2000 samples.
+Mode: contiguous
+Elapsed time: 86 seconds
+
+bin/haploblock_indel
+Fetching allele calls for 1000000 markers and 3000 samples.
+Mode: contiguous
+Elapsed time: 124 seconds
+
+bin/haploblock_indel
+Fetching allele calls for 50000 markers and 2000 samples.
+Mode: contiguous
+Elapsed time: 11 seconds
+

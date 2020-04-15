@@ -1,0 +1,227 @@
+./a.out
+Mode: random
+1000 markers, 1000 samples
+Elapsed time: 11 seconds
+
+./a.out
+Mode: random
+1000 markers, 1000 samples
+Elapsed time: 0 seconds
+
+./a.out
+Mode: random
+1000 markers, 1000 samples
+Elapsed time: 0 seconds
+
+bin/haplarray_rand_snp
+Mode: random
+1000 markers, 1000 samples
+Elapsed time: 0 seconds
+
+bin/haplarray_rand_snp
+Mode: random
+50000 markers, 1000 samples
+Elapsed time: 555 seconds
+
+bin/haplarray_rand_snp
+Mode: random
+50000 markers, 2000 samples
+Elapsed time: 2 seconds
+
+bin/haplarray_rand_snp
+Mode: random
+50000 markers, 3000 samples
+Elapsed time: 2 seconds
+
+bin/haplarray_rand_snp
+Mode: random
+1000000 markers, 1000 samples
+Elapsed time: 5309 seconds
+
+bin/haplarray_rand_snp
+Mode: random
+1000000 markers, 2000 samples
+Elapsed time: 2452 seconds
+
+bin/haplarray_rand_snp
+Mode: random
+1000000 markers, 3000 samples
+Elapsed time: 2988 seconds
+
+=======
+bin/haplarray_rand_snp
+Mode: random
+1000 markers, 1000 samples
+Elapsed time: 75 seconds
+
+bin/haplarray_rand_snp
+Mode: random
+50000 markers, 1000 samples
+Elapsed time: 147 seconds
+
+bin/haplarray_rand_snp
+Mode: random
+50000 markers, 2000 samples
+Elapsed time: 19 seconds
+
+bin/haplarray_rand_snp
+Mode: random
+50000 markers, 3000 samples
+Elapsed time: 3 seconds
+
+bin/haplarray_rand_snp
+Mode: random
+1000000 markers, 1000 samples
+Elapsed time: 3047 seconds
+
+bin/haplarray_rand_snp
+Mode: random
+1000000 markers, 2000 samples
+Elapsed time: 3070 seconds
+
+bin/haplarray_rand_snp
+Mode: random
+1000000 markers, 3000 samples
+Elapsed time: 3158 seconds
+
+bin/haplarray_rand_snp
+Mode: random
+1000 markers, 1000 samples
+Elapsed time: 3 seconds
+
+bin/haplarray_rand_snp
+Mode: random
+50000 markers, 1000 samples
+Elapsed time: 150 seconds
+
+bin/haplarray_rand_snp
+Mode: random
+50000 markers, 2000 samples
+Elapsed time: 18 seconds
+
+bin/haplarray_rand_snp
+Mode: random
+50000 markers, 3000 samples
+Elapsed time: 3 seconds
+
+bin/haplarray_rand_snp
+Mode: random
+1000000 markers, 1000 samples
+Elapsed time: 3050 seconds
+
+bin/haplarray_rand_snp
+Mode: random
+1000000 markers, 2000 samples
+Elapsed time: 3012 seconds
+
+bin/haplarray_rand_snp
+Mode: random
+1000000 markers, 3000 samples
+Elapsed time: 2928 seconds
+
+======
+bin/haplarray_rand_indel
+Mode: random
+1000 markers, 1000 samples
+Elapsed time: 0 seconds
+
+bin/haplarray_rand_indel
+Mode: random
+50000 markers, 1000 samples
+Elapsed time: 632 seconds
+
+bin/haplarray_rand_indel
+Mode: random
+50000 markers, 2000 samples
+Elapsed time: 6 seconds
+
+bin/haplarray_rand_indel
+Mode: random
+50000 markers, 3000 samples
+Elapsed time: 9 seconds
+
+bin/haplarray_rand_indel
+Mode: random
+1000000 markers, 1000 samples
+Elapsed time: 9625 seconds
+
+bin/haplarray_rand_indel
+Mode: random
+1000000 markers, 2000 samples
+Elapsed time: 5758 seconds
+
+bin/haplarray_rand_indel
+Mode: random
+1000000 markers, 3000 samples
+Elapsed time: 6155 seconds
+
+bin/haplarray_rand_indel
+Mode: random
+1000 markers, 1000 samples
+Elapsed time: 6 seconds
+
+bin/haplarray_rand_indel
+Mode: random
+50000 markers, 1000 samples
+Elapsed time: 257 seconds
+
+bin/haplarray_rand_indel
+Mode: random
+50000 markers, 2000 samples
+Elapsed time: 23 seconds
+
+bin/haplarray_rand_indel
+Mode: random
+50000 markers, 3000 samples
+Elapsed time: 9 seconds
+
+bin/haplarray_rand_indel
+Mode: random
+1000000 markers, 1000 samples
+Elapsed time: 5200 seconds
+
+bin/haplarray_rand_indel
+Mode: random
+1000000 markers, 2000 samples
+Elapsed time: 5761 seconds
+
+bin/haplarray_rand_indel
+Mode: random
+1000000 markers, 3000 samples
+Elapsed time: 5567 seconds
+
+bin/haplarray_rand_indel
+Mode: random
+1000 markers, 1000 samples
+Elapsed time: 6 seconds
+
+bin/haplarray_rand_indel
+Mode: random
+50000 markers, 1000 samples
+Elapsed time: 254 seconds
+
+bin/haplarray_rand_indel
+Mode: random
+50000 markers, 2000 samples
+Elapsed time: 24 seconds
+
+bin/haplarray_rand_indel
+Mode: random
+50000 markers, 3000 samples
+Elapsed time: 9 seconds
+
+bin/haplarray_rand_indel
+Mode: random
+1000000 markers, 1000 samples
+Elapsed time: 5124 seconds
+
+bin/haplarray_rand_indel
+Mode: random
+1000000 markers, 2000 samples
+Elapsed time: 5255 seconds
+
+bin/haplarray_rand_indel
+Mode: random
+1000000 markers, 3000 samples
+Elapsed time: 5366 seconds
+

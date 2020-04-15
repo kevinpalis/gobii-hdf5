@@ -1,0 +1,1589 @@
+Number of markers: 1000
+Mode: random
+Elapsed time: 17 seconds
+
+Number of markers: 5000
+Mode: random
+Elapsed time: 71 seconds
+
+Number of markers: 10000
+Mode: random
+Elapsed time: 90 seconds
+
+Number of markers: 50000
+Mode: random
+Elapsed time: 702 seconds
+
+Number of markers: 100000
+Mode: random
+Elapsed time: 869 seconds
+
+Number of markers: 500000
+Mode: random
+Elapsed time: 8859 seconds
+
+Number of markers: 1000000
+Mode: random
+Elapsed time: 9496 seconds
+
+Number of markers: 5000000
+Mode: random
+Elapsed time: 40326 seconds
+
+Number of markers: 100000
+Mode: random
+Elapsed time: 10 seconds
+
+Number of markers: 500000
+Mode: random
+Elapsed time: 2790 seconds
+
+Number of markers: 1000000
+Mode: random
+Elapsed time: 3477 seconds
+
+======= Re-run fetchmarkerlist_test
+Number of markers: 1000
+Mode: random
+Elapsed time: 3 seconds
+
+Number of markers: 5000
+Mode: random
+Elapsed time: 19 seconds
+
+Number of markers: 10000
+Mode: random
+Elapsed time: 18 seconds
+
+Number of markers: 50000
+Mode: random
+Elapsed time: 127 seconds
+
+Number of markers: 100000
+Mode: random
+Elapsed time: 172 seconds
+
+Number of markers: 500000
+Mode: random
+Elapsed time: 1755 seconds
+
+Number of markers: 1000000
+Mode: random
+Elapsed time: 2870 seconds
+
+Number of markers: 5000000
+Mode: random
+Elapsed time: 27246 seconds
+
+Number of markers: 1000
+Mode: contiguous
+Elapsed time: 1 seconds
+
+Number of markers: 5000
+Mode: contiguous
+Elapsed time: 0 seconds
+
+Number of markers: 10000
+Mode: contiguous
+Elapsed time: 1 seconds
+
+Number of markers: 50000
+Mode: contiguous
+Elapsed time: 7 seconds
+
+Number of markers: 100000
+Mode: contiguous
+Elapsed time: 9 seconds
+
+Number of markers: 500000
+Mode: contiguous
+Elapsed time: 63 seconds
+
+Number of markers: 1000000
+Mode: contiguous
+Elapsed time: 127 seconds
+
+Number of markers: 5000000
+Mode: contiguous
+Elapsed time: 639 seconds
+
+Number of markers: 1000
+Mode: random
+Elapsed time: 7 seconds
+
+Number of markers: 5000
+Mode: random
+Elapsed time: 33 seconds
+
+Number of markers: 10000
+Mode: random
+Elapsed time: 41 seconds
+
+Number of markers: 50000
+Mode: random
+Elapsed time: 331 seconds
+
+Number of markers: 100000
+Mode: random
+Elapsed time: 694 seconds
+
+Number of markers: 500000
+Mode: random
+Elapsed time: 3799 seconds
+
+Number of markers: 1000000
+Mode: random
+Elapsed time: 7275 seconds
+
+Number of markers: 5000000
+Mode: random
+Elapsed time: 32619 seconds
+
+======== re-run again, 6may
+Number of markers: 50000
+Mode: random
+Elapsed time: 422 seconds
+
+Number of markers: 1000000
+Mode: random
+Elapsed time: 7746 seconds
+
+======= fetchmarkerlist_rand.c
+Number of markers: 50000
+Mode: random
+Elapsed time: 12 seconds
+
+Number of markers: 1000000
+Mode: random
+Elapsed time: 6666 seconds
+
+Number of markers: 50000
+Mode: random
+Elapsed time: 5 seconds
+
+======= fetchmarkerlist_test
+Number of markers: 100000
+Mode: random
+Elapsed time: 12 seconds
+
+Number of markers: 500000
+Mode: random
+Elapsed time: 52 seconds
+
+Number of markers: 1000000
+Mode: random
+Elapsed time: 104 seconds
+
+Number of markers: 5000000
+Mode: random
+Elapsed time: 22981 seconds
+
+======= fetchmarkerblock (contiguous) again, 9may
+Number of markers: 1000
+Mode: contiguous
+Elapsed time: 1 seconds
+
+Number of markers: 5000
+Mode: contiguous
+Elapsed time: 0 seconds
+
+Number of markers: 10000
+Mode: contiguous
+Elapsed time: 1 seconds
+
+Number of markers: 50000
+Mode: contiguous
+Elapsed time: 6 seconds
+
+Number of markers: 100000
+Mode: contiguous
+Elapsed time: 15 seconds
+
+Number of markers: 500000
+Mode: contiguous
+Elapsed time: 71 seconds
+
+Number of markers: 1000000
+Mode: contiguous
+Elapsed time: 141 seconds
+
+Number of markers: 5000000
+Mode: contiguous
+Elapsed time: 745 seconds
+
+=========== fetchmarkerlist_test
+Number of markers: 1000000
+Mode: random
+Elapsed time: 4164 seconds
+
+Number of markers: 500000
+Mode: random
+Elapsed time: 52 seconds
+
+Number of markers: 100000
+Mode: random
+Elapsed time: 10 seconds
+
+=========== fetchmarkerlist_rand, 25jul2017
+Number of markers: 1000
+Mode: random
+Elapsed time: 9 seconds
+
+Number of markers: 1000
+Mode: random
+Elapsed time: 8 seconds
+
+Number of markers: 5000
+Mode: random
+Elapsed time: 34 seconds
+
+Number of markers: 10000
+Mode: random
+Elapsed time: 45 seconds
+
+Number of markers: 50000
+Mode: random
+Elapsed time: 348 seconds
+
+Number of markers: 100000
+Mode: random
+Elapsed time: 446 seconds
+
+Number of markers: 500000
+Mode: random
+Elapsed time: 3469 seconds
+
+Number of markers: 1000000
+Mode: random
+Elapsed time: 4128 seconds
+
+Number of markers: 5000000
+Mode: random
+Elapsed time: 21918 seconds
+
+Number of markers: 1000
+Mode: random
+Elapsed time: 4 seconds
+
+Number of markers: 5000
+Mode: random
+Elapsed time: 15 seconds
+
+Number of markers: 10000
+Mode: random
+Elapsed time: 18 seconds
+
+Number of markers: 50000
+Mode: random
+Elapsed time: 165 seconds
+
+Number of markers: 100000
+Mode: random
+Elapsed time: 211 seconds
+
+Number of markers: 500000
+Mode: random
+Elapsed time: 1880 seconds
+
+Number of markers: 1000000
+Mode: random
+Elapsed time: 3366 seconds
+
+Number of markers: 5000000
+Mode: random
+Elapsed time: 18596 seconds
+
+Number of markers: 1000
+Mode: random
+Elapsed time: 3 seconds
+
+Number of markers: 5000
+Mode: random
+Elapsed time: 18 seconds
+
+Number of markers: 10000
+Mode: random
+Elapsed time: 23 seconds
+
+Number of markers: 50000
+Mode: random
+Elapsed time: 168 seconds
+
+Number of markers: 100000
+Mode: random
+Elapsed time: 213 seconds
+
+Number of markers: 500000
+Mode: random
+Elapsed time: 1664 seconds
+
+Number of markers: 1000000
+Mode: random
+Elapsed time: 1891 seconds
+
+Number of markers: 5000000
+Mode: random
+Elapsed time: 22283 seconds
+
+====== nov19 =====
+snp:
+
+Number of markers: 1000
+Mode: contiguous
+Elapsed time: 153 seconds
+
+Number of markers: 10000
+Mode: contiguous
+Elapsed time: 1 seconds
+
+Number of markers: 100000
+Mode: contiguous
+Elapsed time: 11 seconds
+
+Number of markers: 1000000
+Mode: contiguous
+Elapsed time: 106 seconds
+
+Number of markers: 5000000
+Mode: contiguous
+Elapsed time: 524 seconds
+
+Number of markers: 1000
+Mode: contiguous
+Elapsed time: 1 seconds
+
+Number of markers: 10000
+Mode: contiguous
+Elapsed time: 1 seconds
+
+Number of markers: 100000
+Mode: contiguous
+Elapsed time: 11 seconds
+
+Number of markers: 1000000
+Mode: contiguous
+Elapsed time: 96 seconds
+
+Number of markers: 5000000
+Mode: contiguous
+Elapsed time: 489 seconds
+
+==
+fetchmarkerlist, snps:
+
+listfilename = ../randomlists/h5_markers.1000
+Mode: random
+Elapsed time: 0 seconds
+
+listfilename = ../randomlists/h5_markers.10k
+Mode: random
+Elapsed time: 86 seconds
+
+listfilename = ../randomlists/h5_markers.100k
+Mode: random
+Elapsed time: 843 seconds
+
+==
+Number of markers: 1000, indels in lookup file
+Mode: contiguous
+Elapsed time: 4 seconds
+
+Number of markers: 10000, indels in lookup file
+Mode: contiguous
+Elapsed time: 45 seconds
+
+Number of markers: 100000, indels in lookup file
+Mode: contiguous
+Elapsed time: 510 seconds
+
+Number of markers: 1000000, indels in lookup file
+Mode: contiguous
+Elapsed time: 5801 seconds
+
+==
+Number of markers: 1000000
+Mode: random
+Elapsed time: 4707 seconds
+
+Number of markers: 1000
+Mode: random
+Elapsed time: 112 seconds
+
+Number of markers: 10000
+Mode: random
+Elapsed time: 162 seconds
+
+Number of markers: 100000
+Mode: random
+Elapsed time: 1639 seconds
+
+Number of markers: 1000000
+Mode: random
+Elapsed time: 16522 seconds
+
+Number of markers: 1000
+Mode: random
+Elapsed time: 103 seconds
+
+Number of markers: 10000
+Mode: random
+Elapsed time: 105 seconds
+
+Number of markers: 100000
+Mode: random
+Elapsed time: 1084 seconds
+
+Number of markers: 1000000
+Mode: random
+Elapsed time: 7471 seconds
+
+Number of markers: 1000
+Mode: random
+Elapsed time: 3 seconds
+
+Number of markers: 10000
+Mode: random
+Elapsed time: 43 seconds
+
+Number of markers: 100000
+Mode: random
+Elapsed time: 450 seconds
+
+Number of markers: 1000000
+Mode: random
+Elapsed time: 4085 seconds
+
+bin/fetchmarkerlist_indel_lkp
+Number of markers: 1000
+Mode: random
+Elapsed time: 7 seconds
+
+bin/fetchmarkerlist_indel_lkp
+Number of markers: 10000
+Mode: random
+Elapsed time: 116 seconds
+
+bin/fetchmarkerlist_indel_lkp
+Number of markers: 100000
+Mode: random
+Elapsed time: 1272 seconds
+
+bin/fetchmarkerlist_indel_lkp
+Number of markers: 1000000
+Mode: random
+Elapsed time: 7913 seconds
+
+bin/fetchmarkerlist_indel_lkp
+Number of markers: 1000
+Mode: random
+Elapsed time: 1 seconds
+
+bin/fetchmarkerlist_indel_lkp
+Number of markers: 10000
+Mode: random
+Elapsed time: 53 seconds
+
+bin/fetchmarkerlist_indel_lkp
+Number of markers: 100000
+Mode: random
+Elapsed time: 576 seconds
+
+bin/fetchmarkerlist_indel_lkp
+Number of markers: 1000000
+Mode: random
+Elapsed time: 5870 seconds
+
+bin/fetchmarkerlist_indel_lkp
+Number of markers: 1000
+Mode: random
+Elapsed time: 8 seconds
+
+bin/fetchmarkerlist_indel_lkp
+Number of markers: 10000
+Mode: random
+Elapsed time: 64 seconds
+
+bin/fetchmarkerlist_indel_lkp
+Number of markers: 100000
+Mode: random
+Elapsed time: 636 seconds
+
+bin/fetchmarkerlist_indel_lkp
+Number of markers: 1000000
+Mode: random
+Elapsed time: 5886 seconds
+
+Random SNPs:
+Number of markers: 1000
+Mode: random
+Elapsed time: 85 seconds
+
+Number of markers: 10000
+Mode: random
+Elapsed time: 110 seconds
+
+Number of markers: 100000
+Mode: random
+Elapsed time: 1211 seconds
+
+7393Number of markers: 1000000
+Mode: random
+Elapsed time: 7393 seconds
+
+Number of markers: 1000, indels in lookup file
+Mode: contiguous
+Elapsed time: 87 seconds
+
+Number of markers: 10000, indels in lookup file
+Mode: contiguous
+Elapsed time: 50 seconds
+
+Number of markers: 100000, indels in lookup file
+Mode: contiguous
+Elapsed time: 563 seconds
+
+Number of markers: 1000000, indels in lookup file
+Mode: contiguous
+Elapsed time: 6356 seconds
+
+Number of markers: 1000, indels in lookup file
+Mode: contiguous
+Elapsed time: 5 seconds
+
+Number of markers: 10000, indels in lookup file
+Mode: contiguous
+Elapsed time: 50 seconds
+
+Number of markers: 100000, indels in lookup file
+Mode: contiguous
+Elapsed time: 571 seconds
+
+Number of markers: 1000000, indels in lookup file
+Mode: contiguous
+Elapsed time: 6354 seconds
+
+===
+SNPs, contiguous
+Number of markers: 1000
+Mode: contiguous
+Elapsed time: 0 seconds
+
+Number of markers: 10000
+Mode: contiguous
+Elapsed time: 1 seconds
+
+Number of markers: 100000
+Mode: contiguous
+Elapsed time: 12 seconds
+
+Number of markers: 1000000
+Mode: contiguous
+Elapsed time: 103 seconds
+
+Number of markers: 5000000
+Mode: contiguous
+Elapsed time: 506 seconds
+
+Number of markers: 1000
+Mode: contiguous
+Elapsed time: 0 seconds
+
+Number of markers: 10000
+Mode: contiguous
+Elapsed time: 1 seconds
+
+Number of markers: 100000
+Mode: contiguous
+Elapsed time: 12 seconds
+
+Number of markers: 1000000
+Mode: contiguous
+Elapsed time: 105 seconds
+
+Number of markers: 5000000
+Mode: contiguous
+Elapsed time: 523 seconds
+
+===
+Padded:
+Number of markers: 1000
+Mode: contiguous
+Elapsed time: 0 seconds
+
+Number of markers: 10000
+Mode: contiguous
+Elapsed time: 8 seconds
+
+Number of markers: 100000
+Mode: contiguous
+Elapsed time: 76 seconds
+
+Number of markers: 1000000
+Mode: contiguous
+Elapsed time: 801 seconds
+
+Number of markers: 5000000
+Mode: contiguous
+Elapsed time: 4012 seconds
+
+Number of markers: 1000
+Mode: contiguous
+Elapsed time: 238 seconds
+
+Number of markers: 10000
+Mode: contiguous
+Elapsed time: 9 seconds
+
+Number of markers: 100000
+Mode: contiguous
+Elapsed time: 82 seconds
+
+Number of markers: 1000000
+Mode: contiguous
+Elapsed time: 816 seconds
+
+Number of markers: 5000000
+Mode: contiguous
+Elapsed time: 4043 seconds
+
+Number of markers: 1000
+Mode: contiguous
+Elapsed time: 1 seconds
+
+Number of markers: 10000
+Mode: contiguous
+Elapsed time: 10 seconds
+
+Number of markers: 100000
+Mode: contiguous
+Elapsed time: 83 seconds
+
+Number of markers: 1000000
+Mode: contiguous
+Elapsed time: 816 seconds
+
+Number of markers: 5000000
+Mode: contiguous
+Elapsed time: 4037 seconds
+
+===
+SNPs random:
+Number of markers: 5000000
+Mode: random
+Elapsed time: 22499 seconds
+
+Number of markers: 5000000
+Mode: random
+Elapsed time: 17982 seconds
+
+Number of markers: 5000000
+Mode: random
+Elapsed time: 18103 seconds
+
+===
+Indels lookup, random:
+bin/fetchmarkerlist_indel_lkp
+Number of markers: 1000
+Mode: random
+Elapsed time: 13 seconds
+
+bin/fetchmarkerlist_indel_lkp
+Number of markers: 5000000
+Mode: random
+Elapsed time: 34975 seconds
+
+bin/fetchmarkerlist_indel_lkp
+Number of markers: 5000000
+Mode: random
+Elapsed time: 30778 seconds
+
+bin/fetchmarkerlist_indel_lkp
+Number of markers: 5000000
+Mode: random
+Elapsed time: 30834 seconds
+
+===
+Indels padded, random:
+bin/fetchmarkerlist_pad:
+Number of markers: 1000
+Mode: random
+Elapsed time: 37 seconds
+
+bin/fetchmarkerlist_pad:
+Number of markers: 10000
+Mode: random
+Elapsed time: 369 seconds
+
+bin/fetchmarkerlist_pad:
+Number of markers: 100000
+Mode: random
+Elapsed time: 4077 seconds
+
+bin/fetchmarkerlist_pad:
+Number of markers: 1000
+Mode: random
+Elapsed time: 1 seconds
+
+bin/fetchmarkerlist_pad:
+Number of markers: 10000
+Mode: random
+Elapsed time: 366 seconds
+
+bin/fetchmarkerlist_pad:
+Number of markers: 100000
+Mode: random
+Elapsed time: 3865 seconds
+
+bin/fetchmarkerlist_pad:
+Number of markers: 1000000
+Mode: random
+Elapsed time: 32529 seconds
+
+bin/fetchmarkerlist_pad:
+Number of markers: 1000
+Mode: random
+Elapsed time: 32 seconds
+
+bin/fetchmarkerlist_pad:
+Number of markers: 10000
+Mode: random
+Elapsed time: 286 seconds
+
+bin/fetchmarkerlist_pad:
+Number of markers: 100000
+Mode: random
+Elapsed time: 896 seconds
+
+bin/fetchmarkerlist_pad:
+Number of markers: 1000000
+Mode: random
+Elapsed time: 31295 seconds
+
+bin/fetchmarkerlist_pad:
+Number of markers: 100000
+Mode: random
+Elapsed time: 3289 seconds
+
+bin/fetchmarkerlist_pad:
+Number of markers: 1000000
+Mode: random
+Elapsed time: 32810 seconds
+
+bin/fetchmarkerlist_pad:
+Number of markers: 100000
+Mode: random
+Elapsed time: 3350 seconds
+
+Number of markers: 5000000, indels in lookup file
+Mode: contiguous
+Elapsed time: 659 seconds
+
+Number of markers: 1000, indels in lookup file
+Mode: contiguous
+Elapsed time: 84 seconds
+
+Number of markers: 10000, indels in lookup file
+Mode: contiguous
+Elapsed time: 2 seconds
+
+Number of markers: 100000, indels in lookup file
+Mode: contiguous
+Elapsed time: 16 seconds
+
+Number of markers: 1000000, indels in lookup file
+Mode: contiguous
+Elapsed time: 168 seconds
+
+Number of markers: 5000000, indels in lookup file
+Mode: contiguous
+Elapsed time: 700 seconds
+
+Number of markers: 5000000, indels in lookup file
+Mode: contiguous
+Elapsed time: 659 seconds
+
+Number of markers: 1000, indels in lookup file
+Mode: contiguous
+Elapsed time: 1 seconds
+
+Number of markers: 10000, indels in lookup file
+Mode: contiguous
+Elapsed time: 2 seconds
+
+Number of markers: 100000, indels in lookup file
+Mode: contiguous
+Elapsed time: 15 seconds
+
+Number of markers: 1000000, indels in lookup file
+Mode: contiguous
+Elapsed time: 136 seconds
+
+Number of markers: 1000, indels in lookup file
+Mode: contiguous
+Elapsed time: 1 seconds
+
+Number of markers: 10000, indels in lookup file
+Mode: contiguous
+Elapsed time: 2 seconds
+
+Number of markers: 100000, indels in lookup file
+Mode: contiguous
+Elapsed time: 14 seconds
+
+Number of markers: 1000000, indels in lookup file
+Mode: contiguous
+Elapsed time: 125 seconds
+
+Number of markers: 1000, indels in lookup file
+Mode: contiguous
+Elapsed time: 83 seconds
+
+Number of markers: 10000, indels in lookup file
+Mode: contiguous
+Elapsed time: 2 seconds
+
+Number of markers: 100000, indels in lookup file
+Mode: contiguous
+Elapsed time: 16 seconds
+
+Number of markers: 1000, indels in lookup file
+Mode: contiguous
+Elapsed time: 1 seconds
+
+Number of markers: 10000, indels in lookup file
+Mode: contiguous
+Elapsed time: 2 seconds
+
+Number of markers: 100000, indels in lookup file
+Mode: contiguous
+Elapsed time: 14 seconds
+
+Number of markers: 1000, indels in lookup file
+Mode: contiguous
+Elapsed time: 1 seconds
+
+Number of markers: 10000, indels in lookup file
+Mode: contiguous
+Elapsed time: 1 seconds
+
+Number of markers: 100000, indels in lookup file
+Mode: contiguous
+Elapsed time: 14 seconds
+
+======
+Try samples-fast orientation for N markers x all samples:
+
+./a.out:
+Number of markers: 1000
+Mode: random
+Elapsed time: 490 seconds
+
+bin/fetchmarkerlist:
+Number of markers: 1000
+Mode: random
+Elapsed time: 488 seconds
+
+bin/fetchmarkerlist:
+Number of markers: 10000
+Mode: random
+Elapsed time: 475 seconds
+
+bin/fetchmarkerlist:
+Number of markers: 100000
+Mode: random
+Elapsed time: 509 seconds
+
+bin/fetchmarkerlist:
+Number of markers: 1000000
+Mode: random
+Elapsed time: 838 seconds
+
+bin/fetchmarkerlist:
+Number of markers: 5000000
+Mode: random
+Elapsed time: 2021 seconds
+
+bin/fetchmarkerlist:
+Number of markers: 1000
+Mode: random
+Elapsed time: 384 seconds
+
+bin/fetchmarkerlist:
+Number of markers: 10000
+Mode: random
+Elapsed time: 442 seconds
+
+bin/fetchmarkerlist:
+Number of markers: 100000
+Mode: random
+Elapsed time: 481 seconds
+
+bin/fetchmarkerlist:
+Number of markers: 1000000
+Mode: random
+Elapsed time: 849 seconds
+
+bin/fetchmarkerlist:
+Number of markers: 5000000
+Mode: random
+Elapsed time: 2131 seconds
+
+bin/fetchmarkerlist:
+Number of markers: 10000
+Mode: random
+Elapsed time: 463 seconds
+
+bin/fetchmarkerlist:
+Number of markers: 100000
+Mode: random
+Elapsed time: 501 seconds
+
+bin/fetchmarkerlist:
+Number of markers: 1000000
+Mode: random
+Elapsed time: 851 seconds
+
+bin/fetchmarkerlist:
+Number of markers: 5000000
+Mode: random
+Elapsed time: 2011 seconds
+
+=======
+7feb20:  Tetraploids (with indels)
+
+bin/fetchmarkerlist_indel_lkp
+Number of markers: 1000
+Mode: random
+Elapsed time: 15 seconds
+
+bin/fetchmarkerlist_indel_lkp
+Number of markers: 1000
+Mode: random
+Elapsed time: 1 seconds
+
+bin/fetchmarkerlist_indel_lkp
+Number of markers: 10000
+Mode: random
+Elapsed time: 129 seconds
+
+bin/fetchmarkerlist_indel_lkp
+Number of markers: 100000
+Mode: random
+Elapsed time: 1421 seconds
+
+bin/fetchmarkerlist_indel_lkp
+Number of markers: 1000000
+Mode: random
+Elapsed time: 12030 seconds
+
+bin/fetchmarkerlist_indel_lkp
+Number of markers: 5000000
+Mode: random
+Elapsed time: 55768 seconds
+
+bin/fetchmarkerlist_indel_lkp
+Number of markers: 1000
+Mode: random
+Elapsed time: 11 seconds
+
+bin/fetchmarkerlist_indel_lkp
+Number of markers: 10000
+Mode: random
+Elapsed time: 98 seconds
+
+bin/fetchmarkerlist_indel_lkp
+Number of markers: 100000
+Mode: random
+Elapsed time: 1067 seconds
+
+bin/fetchmarkerlist_indel_lkp
+Number of markers: 1000000
+Mode: random
+Elapsed time: 10745 seconds
+
+bin/fetchmarkerlist_indel_lkp
+Number of markers: 5000000
+Mode: random
+Elapsed time: 53646 seconds
+
+bin/fetchmarkerlist_indel_lkp
+Number of markers: 10000
+Mode: random
+Elapsed time: 106 seconds
+
+bin/fetchmarkerlist_indel_lkp
+Number of markers: 100000
+Mode: random
+Elapsed time: 1061 seconds
+
+bin/fetchmarkerlist_indel_lkp
+Number of markers: 1000000
+Mode: random
+Elapsed time: 10568 seconds
+
+bin/fetchmarkerlist_indel_lkp
+Number of markers: 5000000
+Mode: random
+Elapsed time: 52615 seconds
+
+Number of markers: 1000, indels in lookup file
+Mode: contiguous
+Elapsed time: 27 seconds
+
+Number of markers: 10000, indels in lookup file
+Mode: contiguous
+Elapsed time: 3 seconds
+
+Number of markers: 100000, indels in lookup file
+Mode: contiguous
+Elapsed time: 28 seconds
+
+Number of markers: 1000000, indels in lookup file
+Mode: contiguous
+Elapsed time: 238 seconds
+
+Number of markers: 5000000, indels in lookup file
+Mode: contiguous
+Elapsed time: 1207 seconds
+
+Number of markers: 1000, indels in lookup file
+Mode: contiguous
+Elapsed time: 1 seconds
+
+Number of markers: 10000, indels in lookup file
+Mode: contiguous
+Elapsed time: 4 seconds
+
+Number of markers: 100000, indels in lookup file
+Mode: contiguous
+Elapsed time: 28 seconds
+
+Number of markers: 1000000, indels in lookup file
+Mode: contiguous
+Elapsed time: 251 seconds
+
+Number of markers: 5000000, indels in lookup file
+Mode: contiguous
+Elapsed time: 1247 seconds
+
+Number of markers: 1000, indels in lookup file
+Mode: contiguous
+Elapsed time: 1 seconds
+
+Number of markers: 10000, indels in lookup file
+Mode: contiguous
+Elapsed time: 3 seconds
+
+Number of markers: 100000, indels in lookup file
+Mode: contiguous
+Elapsed time: 30 seconds
+
+Number of markers: 1000000, indels in lookup file
+Mode: contiguous
+Elapsed time: 249 seconds
+
+Number of markers: 5000000, indels in lookup file
+Mode: contiguous
+Elapsed time: 1410 seconds
+
+Number of markers: 5000000, indels in lookup file
+Mode: contiguous
+Elapsed time: 749 seconds
+
+./a.out
+Number of markers: 1000
+Mode: random
+Elapsed time: 1428 seconds
+
+bin/fetchmarkerlist_indel_lkp_sf
+Number of markers: 1000
+Mode: random
+Elapsed time: 1398 seconds
+
+bin/fetchmarkerlist_indel_lkp_sf
+Number of markers: 10000
+Mode: random
+Elapsed time: 1263 seconds
+
+bin/fetchmarkerlist_indel_lkp_sf
+Number of markers: 1000000
+Mode: random
+Elapsed time: 1763 seconds
+
+bin/fetchmarkerlist_indel_lkp_sf
+Number of markers: 100000
+Mode: random
+Elapsed time: 1505 seconds
+
+bin/fetchmarkerlist_indel_lkp_sf
+Number of markers: 1000000
+Mode: random
+Elapsed time: 1756 seconds
+
+bin/fetchmarkerlist_indel_lkp_sf
+Number of markers: 1000
+Mode: random
+Elapsed time: 1157 seconds
+
+bin/fetchmarkerlist_indel_lkp_sf
+Number of markers: 10000
+Mode: random
+Elapsed time: 1236 seconds
+
+bin/fetchmarkerlist_indel_lkp_sf
+Number of markers: 100000
+Mode: random
+Elapsed time: 1267 seconds
+
+./a.out
+Number of markers: 1000
+Mode: random
+Elapsed time: 1294 seconds
+
+./a.out
+Number of markers: 5000000
+Mode: random
+Elapsed time: 1702 seconds
+
+bin/fetchmarkerlist_indel_lkp_sf
+Number of markers: 1000
+Mode: random
+Elapsed time: 1383 seconds
+
+bin/fetchmarkerlist_indel_lkp_sf
+Number of markers: 10000
+Mode: random
+Elapsed time: 1408 seconds
+
+bin/fetchmarkerlist_indel_lkp_sf
+Number of markers: 100000
+Mode: random
+Elapsed time: 1448 seconds
+
+bin/fetchmarkerlist_indel_lkp_sf
+Number of markers: 1000000
+Mode: random
+Elapsed time: 1500 seconds
+
+bin/fetchmarkerlist_indel_lkp_sf
+Number of markers: 5000000
+Mode: random
+Elapsed time: 1675 seconds
+
+bin/fetchmarkerlist_indel_lkp_sf
+Number of markers: 10000
+Mode: random
+Elapsed time: 1398 seconds
+
+bin/fetchmarkerlist_indel_lkp_sf
+Number of markers: 100000
+Mode: random
+Elapsed time: 1448 seconds
+
+bin/fetchmarkerlist_indel_lkp_sf
+Number of markers: 1000000
+Mode: random
+Elapsed time: 1501 seconds
+
+bin/fetchmarkerlist_indel_lkp_sf
+Number of markers: 1000
+Mode: random
+Elapsed time: 1390 seconds
+
+bin/fetchmarkerlist_indel_lkp_sf
+Number of markers: 10000
+Mode: random
+Elapsed time: 1407 seconds
+
+bin/fetchmarkerlist_indel_lkp_sf
+Number of markers: 100000
+Mode: random
+Elapsed time: 1453 seconds
+
+bin/fetchmarkerlist_indel_lkp_sf
+Number of markers: 1000000
+Mode: random
+Elapsed time: 1504 seconds
+
+bin/fetchmarkerlist_indel_lkp_sf
+Number of markers: 5000000
+Mode: random
+Elapsed time: 1688 seconds
+
+25feb20, Indels sideways:
+
+bin/fetchmarkerlist_indel_lkp_sf
+Number of markers: 1000
+Mode: random
+Elapsed time: 741 seconds
+
+bin/fetchmarkerlist_indel_lkp_sf
+Number of markers: 10000
+Mode: random
+Elapsed time: 666 seconds
+
+bin/fetchmarkerlist_indel_lkp_sf
+Number of markers: 100000
+Mode: random
+Elapsed time: 673 seconds
+
+bin/fetchmarkerlist_indel_lkp_sf
+Number of markers: 1000000
+Mode: random
+Elapsed time: 697 seconds
+
+bin/fetchmarkerlist_indel_lkp_sf
+Number of markers: 5000000
+Mode: random
+Elapsed time: 909 seconds
+
+bin/fetchmarkerlist_indel_lkp_sf
+Number of markers: 1000
+Mode: random
+Elapsed time: 662 seconds
+
+bin/fetchmarkerlist_indel_lkp_sf
+Number of markers: 10000
+Mode: random
+Elapsed time: 666 seconds
+
+bin/fetchmarkerlist_indel_lkp_sf
+Number of markers: 100000
+Mode: random
+Elapsed time: 674 seconds
+
+bin/fetchmarkerlist_indel_lkp_sf
+Number of markers: 1000000
+Mode: random
+Elapsed time: 705 seconds
+
+bin/fetchmarkerlist_indel_lkp_sf
+Number of markers: 5000000
+Mode: random
+Elapsed time: 910 seconds
+
+bin/fetchmarkerlist_indel_lkp_sf
+Number of markers: 1000
+Mode: random
+Elapsed time: 662 seconds
+
+bin/fetchmarkerlist_indel_lkp_sf
+Number of markers: 10000
+Mode: random
+Elapsed time: 665 seconds
+
+bin/fetchmarkerlist_indel_lkp_sf
+Number of markers: 100000
+Mode: random
+Elapsed time: 672 seconds
+
+bin/fetchmarkerlist_indel_lkp_sf
+Number of markers: 1000000
+Mode: random
+Elapsed time: 700 seconds
+
+bin/fetchmarkerlist_indel_lkp_sf
+Number of markers: 5000000
+Mode: random
+Elapsed time: 911 seconds
+
+bin/fetchmarkerlist:
+Number of markers: 1000
+Mode: random
+Elapsed time: 90 seconds
+
+bin/fetchmarkerlist:
+Number of markers: 10000
+Mode: random
+Elapsed time: 116 seconds
+
+bin/fetchmarkerlist:
+Number of markers: 100000
+Mode: random
+Elapsed time: 1262 seconds
+
+bin/fetchmarkerlist:
+Number of markers: 1000000
+Mode: random
+Elapsed time: 5756 seconds
+
+bin/fetchmarkerlist:
+Number of markers: 5000000
+Mode: random
+Elapsed time: 18739 seconds
+
+bin/fetchmarkerlist:
+Number of markers: 1000
+Mode: random
+Elapsed time: 4 seconds
+
+bin/fetchmarkerlist:
+Number of markers: 10000
+Mode: random
+Elapsed time: 32 seconds
+
+bin/fetchmarkerlist:
+Number of markers: 100000
+Mode: random
+Elapsed time: 346 seconds
+
+bin/fetchmarkerlist:
+Number of markers: 1000000
+Mode: random
+Elapsed time: 3568 seconds
+
+bin/fetchmarkerlist:
+Number of markers: 5000000
+Mode: random
+Elapsed time: 17942 seconds
+
+bin/fetchmarkerlist:
+Number of markers: 1000
+Mode: random
+Elapsed time: 4 seconds
+
+bin/fetchmarkerlist:
+Number of markers: 10000
+Mode: random
+Elapsed time: 33 seconds
+
+bin/fetchmarkerlist:
+Number of markers: 100000
+Mode: random
+Elapsed time: 347 seconds
+
+bin/fetchmarkerlist:
+Number of markers: 1000000
+Mode: random
+Elapsed time: 3580 seconds
+
+bin/fetchmarkerlist:
+Number of markers: 5000000
+Mode: random
+Elapsed time: 17922 seconds
+
+# Try markers-fast again using the latest version, fetchmarkerlist_indel_lkp_sf:
+
+bin/fetchmarkerlist_indel_lkp_sf
+Number of markers: 1000
+Mode: random
+Elapsed time: 4 seconds
+
+bin/fetchmarkerlist_indel_lkp_sf
+Number of markers: 10000
+Mode: random
+Elapsed time: 34 seconds
+
+bin/fetchmarkerlist_indel_lkp_sf
+Number of markers: 100000
+Mode: random
+Elapsed time: 382 seconds
+
+bin/fetchmarkerlist_indel_lkp_sf
+Number of markers: 1000000
+Mode: random
+Elapsed time: 3788 seconds
+
+bin/fetchmarkerlist_indel_lkp_sf
+Number of markers: 5000000
+Mode: random
+Elapsed time: 18616 seconds
+
+bin/fetchmarkerlist_indel_lkp_sf
+Number of markers: 1000
+Mode: random
+Elapsed time: 5 seconds
+
+bin/fetchmarkerlist_indel_lkp_sf
+Number of markers: 10000
+Mode: random
+Elapsed time: 36 seconds
+
+bin/fetchmarkerlist_indel_lkp_sf
+Number of markers: 100000
+Mode: random
+Elapsed time: 399 seconds
+
+bin/fetchmarkerlist_indel_lkp_sf
+Number of markers: 1000000
+Mode: random
+Elapsed time: 3919 seconds
+
+bin/fetchmarkerlist_indel_lkp_sf
+Number of markers: 5000000
+Mode: random
+Elapsed time: 19101 seconds
+
+bin/fetchmarkerlist_indel_lkp_sf
+Number of markers: 1000
+Mode: random
+Elapsed time: 4 seconds
+
+bin/fetchmarkerlist_indel_lkp_sf
+Number of markers: 10000
+Mode: random
+Elapsed time: 34 seconds
+
+bin/fetchmarkerlist_indel_lkp_sf
+Number of markers: 100000
+Mode: random
+Elapsed time: 362 seconds
+
+bin/fetchmarkerlist_indel_lkp_sf
+Number of markers: 1000000
+Mode: random
+Elapsed time: 3740 seconds
+
+bin/fetchmarkerlist_indel_lkp_sf
+Number of markers: 5000000
+Mode: random
+Elapsed time: 19458 seconds
+
+bin/fetchmarkerlist_indel_lkp_sf
+Number of markers: 1000
+Mode: random
+Elapsed time: 4 seconds
+
+bin/fetchmarkerlist_indel_lkp_sf
+Number of markers: 10000
+Mode: random
+Elapsed time: 33 seconds
+
+bin/fetchmarkerlist_indel_lkp_sf
+Number of markers: 100000
+Mode: random
+Elapsed time: 363 seconds
+
+bin/fetchmarkerlist_indel_lkp_sf
+Number of markers: 1000000
+Mode: random
+Elapsed time: 3743 seconds
+
+bin/fetchmarkerlist_indel_lkp_sf
+Number of markers: 5000000
+Mode: random
+Elapsed time: 18934 seconds
+
+# 31mar: fetchmarkerlist_indel_lkp_sf2_tp.c, samples-fast, transposing the output back to Hapmap format.
+./a.out
+Number of markers: 100
+Mode: random
+Elapsed time: 1398 seconds
+
+bin/fetchmarkerlist_indel_lkp_sf2_tp
+Number of markers: 1000
+Mode: random
+Elapsed time: 1328 seconds
+
+bin/fetchmarkerlist_indel_lkp_sf2_tp
+Number of markers: 10000
+Mode: random
+Elapsed time: 2115 seconds
+
+bin/fetchmarkerlist_indel_lkp_sf2_tp
+Number of markers: 100000
+Mode: random
+Elapsed time: 7901 seconds
+
+bin/fetchmarkerlist_indel_lkp_sf2_tp
+Number of markers: 1000000
+Mode: random
+Elapsed time: 91649 seconds
+
+# 4apr, Batch the transposing.
+Time = 1202 sec. Temporary .h5 file built. Dumping to output.
+./a.out
+Number of markers: 100
+Mode: random
+Elapsed time: 1202 seconds
+
+Time = 1334 sec. Temporary .h5 file built. Dumping to output.
+bin/fetchmarkerlist_indel_lkp_sf2_tp_batch
+Number of markers: 1000
+Mode: random
+Elapsed time: 1334 seconds
+
+Time = 1338 sec. Temporary .h5 file built. Dumping to output.
+bin/fetchmarkerlist_indel_lkp_sf2_tp_batch
+Number of markers: 10000
+Mode: random
+Elapsed time: 1343 seconds
+
+Time = 1392 sec. Temporary .h5 file built. Dumping to output.
+bin/fetchmarkerlist_indel_lkp_sf2_tp_batch
+Number of markers: 100000
+Mode: random
+Elapsed time: 1437 seconds
+
+Time = 1955 sec. Temporary .h5 file built. Dumping to output.
+bin/fetchmarkerlist_indel_lkp_sf2_tp_batch
+Number of markers: 1000000
+Mode: random
+Elapsed time: 2381 seconds
+
+Time = 4966 sec. Temporary .h5 file built. Dumping to output.
+bin/fetchmarkerlist_indel_lkp_sf2_tp_batch
+Number of markers: 5000000
+Mode: random
+Elapsed time: 7213 seconds
+
+Time = 1583 sec. Temporary .h5 file built. Dumping to output.
+bin/fetchmarkerlist_indel_lkp_sf2_tp_batch
+Number of markers: 1000
+Mode: random
+Elapsed time: 1584 seconds
+
+Time = 1399 sec. Temporary .h5 file built. Dumping to output.
+bin/fetchmarkerlist_indel_lkp_sf2_tp_batch
+Number of markers: 10000
+Mode: random
+Elapsed time: 1404 seconds
+
+Time = 1463 sec. Temporary .h5 file built. Dumping to output.
+bin/fetchmarkerlist_indel_lkp_sf2_tp_batch
+Number of markers: 100000
+Mode: random
+Elapsed time: 1508 seconds
+
+Time = 1962 sec. Temporary .h5 file built. Dumping to output.
+bin/fetchmarkerlist_indel_lkp_sf2_tp_batch
+Number of markers: 1000000
+Mode: random
+Elapsed time: 2385 seconds
+
+Time = 4953 sec. Temporary .h5 file built. Dumping to output.
+bin/fetchmarkerlist_indel_lkp_sf2_tp_batch
+Number of markers: 5000000
+Mode: random
+Elapsed time: 7223 seconds
+
+Time = 1408 sec. Temporary .h5 file built. Dumping to output.
+bin/fetchmarkerlist_indel_lkp_sf2_tp_batch
+Number of markers: 1000
+Mode: random
+Elapsed time: 1409 seconds
+
+Time = 1397 sec. Temporary .h5 file built. Dumping to output.
+bin/fetchmarkerlist_indel_lkp_sf2_tp_batch
+Number of markers: 10000
+Mode: random
+Elapsed time: 1403 seconds
+
+Time = 1445 sec. Temporary .h5 file built. Dumping to output.
+bin/fetchmarkerlist_indel_lkp_sf2_tp_batch
+Number of markers: 100000
+Mode: random
+Elapsed time: 1491 seconds
+
+Time = 1945 sec. Temporary .h5 file built. Dumping to output.
+bin/fetchmarkerlist_indel_lkp_sf2_tp_batch
+Number of markers: 1000000
+Mode: random
+Elapsed time: 2368 seconds
+
+Time = 4965 sec. Temporary .h5 file built. Dumping to output.
+bin/fetchmarkerlist_indel_lkp_sf2_tp_batch
+Number of markers: 5000000
+Mode: random
+Elapsed time: 7234 seconds
+
