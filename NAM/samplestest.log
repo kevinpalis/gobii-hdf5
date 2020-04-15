@@ -1,0 +1,98 @@
+Number of samples: 100
+Mode: contiguous
+Elapsed time: 158 seconds
+
+Number of samples: 1000
+Mode: random
+Elapsed time: 9567 seconds
+
+Number of samples: 100
+Mode: random
+Elapsed time: 1035 seconds
+
+Number of samples: 1000
+Mode: contiguous
+Elapsed time: 434 seconds
+
+Number of samples: 3000
+Mode: contiguous
+Elapsed time: 1348 seconds
+
+Number of samples: 3000
+Mode: random
+Elapsed time: 31410 seconds
+
+Number of samples: 50
+Mode: random
+Elapsed time: 485 seconds
+
+========
+Testing on gobii_transpose.h5:CIMMYT
+
+Number of samples: 100
+Mode: contiguous
+Elapsed time: 5 seconds
+
+Number of samples: 1000
+Mode: contiguous
+Elapsed time: 84 seconds
+
+Number of samples: 3000
+Mode: contiguous
+Elapsed time: 294 seconds
+
+Number of samples: 100
+Mode: random
+Elapsed time: 14 seconds
+
+Number of samples: 1000
+Mode: random
+Elapsed time: 73 seconds
+
+Number of samples: 3000
+Mode: random
+Elapsed time: 198 seconds
+
+Number of samples: 100
+Mode: contiguous
+Elapsed time: 5 seconds
+
+Number of samples: 1000
+Mode: contiguous
+Elapsed time: 45 seconds
+
+Number of samples: 3000
+Mode: contiguous
+Elapsed time: 182 seconds
+
+Number of samples: 100
+Mode: random
+Elapsed time: 8 seconds
+
+Number of samples: 1000
+Mode: random
+Elapsed time: 66 seconds
+
+Number of samples: 3000
+Mode: random
+Elapsed time: 164 seconds
+
+========
+Testing on NAM c1+2
+
+Number of samples: 100
+Mode: contiguous
+Elapsed time: 269 seconds
+
+Number of samples: 1000
+Mode: contiguous
+Elapsed time: 1255 seconds
+
+Number of samples: 3000
+Mode: contiguous
+Elapsed time: 5810 seconds
+
+Number of samples: 100
+Mode: random
+Elapsed time: 2649 seconds
+

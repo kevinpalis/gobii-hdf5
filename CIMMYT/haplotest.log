@@ -1,0 +1,44 @@
+Fetching allele calls for 1000 markers and 100 samples.
+100000 datapoints fetched in 8 seconds.
+Writing the output file...
+Total time = 8 seconds.
+
+Fetching allele calls for 3000 markers and 300 samples.
+900000 datapoints fetched in 89 seconds.
+Writing the output file...
+Total time = 89 seconds.
+
+Fetching allele calls for 10000 markers and 1000 samples.
+10000000 datapoints fetched in 3741 seconds.
+Writing the output file...
+Total time = 3745 seconds.
+
+Fetching allele calls for 30000 markers and 3000 samples.
+(> 12 hours, killed)
+
+Fetching allele calls for 1000 markers and 1000 samples.
+1000000 datapoints fetched in 101 seconds.
+Writing the output file...
+Total time = 101 seconds.
+
+Fetching allele calls for 3000 markers and 3000 samples.
+9000000 datapoints fetched in 2775 seconds.
+Writing the output file...
+Total time = 2778 seconds.
+
+Fetching allele calls for 100 markers and 100 samples.
+Mode: contiguous
+Elapsed time: 0 seconds
+
+Fetching allele calls for 1000 markers and 1000 samples.
+Mode: contiguous
+Elapsed time: 0 seconds
+
+Fetching allele calls for 3000 markers and 3000 samples.
+Mode: contiguous
+Elapsed time: 1 seconds
+
+Fetching allele calls for 30000 markers and 3000 samples.
+Mode: contiguous
+Elapsed time: 5 seconds
+
